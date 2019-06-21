@@ -1,4 +1,9 @@
-import { FETCH_STUDENT, RESET_STUDENT, STUDENT_RECEIVED } from './actions';
+import {
+  ADD_COMMENT,
+  FETCH_STUDENT,
+  RESET_STUDENT,
+  STUDENT_RECEIVED
+} from './actions';
 
 const initialState = {
   student: {
@@ -11,6 +16,9 @@ const initialState = {
 export default function(state = initialState, action) {
   const { payload, type } = action;
   switch (type) {
+    case ADD_COMMENT:
+      console.log(type, payload);
+      return state;
     case FETCH_STUDENT:
       return { ...state, studentLoading: true };
     case RESET_STUDENT:
