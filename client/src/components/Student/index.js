@@ -1,18 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { titleCase } from '../../helpers';
 
 const propTypes = {
   image: PropTypes.string.isRequired,
-  login: PropTypes.string.isRequired,
+  github: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired
 };
 
-const Student = ({ image, login, name }) => (
+const Student = ({ image, github, name }) => (
   <div>
-    <Link to={`/students/${login}`}>
-      <h2>I'm a student</h2>
-      <h3>{name}</h3>
+    <Link to={`/students/${github}`}>
+      <h2>{titleCase(name)}</h2>
       <img src={image} alt={name} />
     </Link>
   </div>

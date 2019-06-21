@@ -1,4 +1,5 @@
 import { FETCH_STUDENT, RESET_STUDENT, STUDENT_RECEIVED } from './actions';
+// import { formatStudentAPIResults } from '../../helpers';
 
 const initialState = {
   student: {

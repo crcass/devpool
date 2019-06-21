@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchStudent, resetStudent } from './actions';
+import Repos from './layout/Repos';
+import { titleCase } from '../../helpers';
 
 const propTypes = {
   fetchStudent: PropTypes.func.isRequired,
@@ -33,12 +35,13 @@ const StudentDetail = ({
 
   return (
     <Fragment>
-      <h2>Student Detail</h2>
-      <h2>{student.name}</h2>
-      <img src={student.avatar_url} alt={student.name} />
-      <a href={student.html_url} target="_blank" rel="noopener noreferrer">
+      <h1>Student Detail</h1>
+      <h2>{titleCase(student.name)}</h2>
+      <img src={student.image} alt={student.name} />
+      <a href={student.profile} target="_blank" rel="noopener noreferrer">
         Github
       </a>
+      <Repos repos={student.repos} />
     </Fragment>
   );
 };

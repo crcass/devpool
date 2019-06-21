@@ -9,8 +9,8 @@ const renderStudents = students =>
   students.map(student => (
     <Student
       key={student.id}
-      login={student.login}
-      image={student.avatar_url}
+      github={student.github}
+      image={student.image}
       name={student.name}
     />
   ));
@@ -23,8 +23,10 @@ const propTypes = {
 
 const StudentList = ({ fetchStudents, isLoaded, students }) => {
   useEffect(() => {
-    fetchStudents();
-  }, [fetchStudents]);
+    if (!isLoaded) {
+      fetchStudents();
+    }
+  }, [isLoaded, fetchStudents]);
 
   if (!isLoaded) {
     return <h1>Loading...</h1>;
