@@ -20,7 +20,11 @@ const initialState = {
 
 const sagaMiddleware = createSagaMiddleware();
 
-const middleware = [logger, sagaMiddleware];
+const middleware = [sagaMiddleware];
+
+if (process.env.NODE_ENV === 'development') {
+  middleware.push(logger);
+}
 
 const store = createStore(
   rootReducer,
