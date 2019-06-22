@@ -7,6 +7,11 @@ import rootSaga from './rootSaga';
 
 const initialState = {
   student: {
+    comments: [],
+    image: '',
+    name: '',
+    profile: '',
+    repos: [],
     student: {},
     studentLoaded: false,
     studentLoading: false

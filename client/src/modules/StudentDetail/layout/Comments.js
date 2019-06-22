@@ -1,18 +1,36 @@
 import React from 'react';
-import { Field, reduxForm } from 'redux-form';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { removeComment } from '../actions';
 
-let Comments = ({ handleSubmit, pristine, reset, submitting }) => (
-  <form onSubmit={handleSubmit}>
-    <label htmlFor="comment">Comment</label>
-    <Field name="comment" component="input" type="text" />
-    <button type="submit" disabled={pristine || submitting}>
-      Submit
-    </button>
-  </form>
+const renderComments = (comments, removeComment) =>
+  comments.map((comment, i) => (
+    <div key={i}>
+      <p>{comment.comment}</p>
+      <button onClick={() => removeComment(i)}>&times;</button>
+    </div>
+  ));
+
+const propTypes = {
+  comments: PropTypes.array.isRequired,
+  removeComment: PropTypes.func.isRequired
+};
+
+const Comments = ({ comments, removeComment }) => (
+  <div>{renderComments(comments, removeComment)}</div>
 );
 
-Comments = reduxForm({
-  form: 'comment'
-})(Comments);
+const mapStateToProps = state => ({
+  comments: state.student.comments
+});
 
-export default Comments;
+const mapDispatchToProps = dispatch =>
+  bindActionCreators({ removeComment }, dispatch);
+
+Comments.propTypes = propTypes;
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Comments);

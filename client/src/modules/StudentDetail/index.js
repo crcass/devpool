@@ -2,7 +2,9 @@ import React, { Fragment, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { fetchStudent, resetStudent } from './actions';
+import { addComment, fetchStudent, resetStudent } from './actions';
+import Comments from './layout/Comments';
+import CommentForm from './layout/CommentForm';
 import Repos from './layout/Repos';
 import { titleCase } from '../../helpers';
 
@@ -17,6 +19,8 @@ const propTypes = {
 };
 
 const StudentDetail = ({
+  addComment,
+  comments,
   fetchStudent,
   isLoaded,
   match,
@@ -28,6 +32,10 @@ const StudentDetail = ({
     fetchStudent(id);
     return () => resetStudent();
   }, [match.params, fetchStudent, resetStudent]);
+
+  useEffect(() => console.log(comments), [comments]);
+
+  const submit = values => addComment(values);
 
   if (!isLoaded) {
     return <h1>Loading...</h1>;
@@ -41,18 +49,21 @@ const StudentDetail = ({
       <a href={student.profile} target="_blank" rel="noopener noreferrer">
         Github
       </a>
+      <Comments />
+      <CommentForm onSubmit={submit} />
       <Repos repos={student.repos} />
     </Fragment>
   );
 };
 
 const mapStateToProps = state => ({
-  student: state.student.student,
-  isLoaded: state.student.studentLoaded
+  comments: state.student.comments,
+  isLoaded: state.student.studentLoaded,
+  student: state.student
 });
 
 const mapDispatchToProps = dispatch =>
-  bindActionCreators({ fetchStudent, resetStudent }, dispatch);
+  bindActionCreators({ addComment, fetchStudent, resetStudent }, dispatch);
 
 StudentDetail.propTypes = propTypes;
 
