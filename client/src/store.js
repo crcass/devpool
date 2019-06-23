@@ -8,13 +8,12 @@ import rootSaga from './rootSaga';
 const initialState = {
   student: {
     comments: [],
-    image: '',
-    name: '',
-    profile: '',
+    commentsLoaded: false,
+    image: null,
+    name: null,
+    profile: null,
     repos: [],
-    student: {},
-    studentLoaded: false,
-    studentLoading: false
+    studentLoaded: false
   },
   students: {
     students: [],

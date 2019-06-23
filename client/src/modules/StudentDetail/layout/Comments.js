@@ -6,9 +6,9 @@ import { removeComment } from '../actions';
 
 const renderComments = (comments, removeComment) =>
   comments.map((comment, i) => (
-    <div key={i}>
+    <div key={comment.id}>
       <p>{comment.comment}</p>
-      <button onClick={() => removeComment(i)}>&times;</button>
+      <button onClick={() => removeComment(comment.id, i)}>&times;</button>
     </div>
   ));
 
@@ -18,7 +18,10 @@ const propTypes = {
 };
 
 const Comments = ({ comments, removeComment }) => (
-  <div>{renderComments(comments, removeComment)}</div>
+  <div>
+    <h3>Comments</h3>
+    {renderComments(comments, removeComment)}
+  </div>
 );
 
 const mapStateToProps = state => ({

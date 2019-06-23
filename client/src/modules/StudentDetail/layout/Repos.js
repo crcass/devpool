@@ -11,12 +11,19 @@ const renderRepos = repos => {
       <p>{repo.name}</p>
       <p>{repo.language}</p>
       <p>{repo.description}</p>
-      <a href={repo.url}>View Repo on Github</a>
+      <a href={repo.url} target="_blank" rel="noopener noreferrer">
+        View Repo on Github
+      </a>
     </div>
   ));
 };
 
-const Repos = ({ repos }) => <div>{renderRepos(repos)}</div>;
+const Repos = ({ repos }) => (
+  <div>
+    <h3>Recent Projects</h3>
+    {renderRepos(repos)}
+  </div>
+);
 
 Repos.propTypes = propTypes;
 

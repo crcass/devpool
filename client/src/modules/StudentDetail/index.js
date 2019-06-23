@@ -2,7 +2,12 @@ import React, { Fragment, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { addComment, fetchStudent, resetStudent } from './actions';
+import {
+  addComment,
+  fetchComments,
+  fetchStudent,
+  resetStudent
+} from './actions';
 import Comments from './layout/Comments';
 import CommentForm from './layout/CommentForm';
 import Repos from './layout/Repos';
@@ -10,34 +15,35 @@ import { titleCase } from '../../helpers';
 
 const propTypes = {
   fetchStudent: PropTypes.func.isRequired,
-  isLoaded: PropTypes.bool.isRequired,
   match: PropTypes.shape({
     params: PropTypes.shape({ id: PropTypes.string.isRequired }).isRequired
   }).isRequired,
   resetStudent: PropTypes.func.isRequired,
-  student: PropTypes.object.isRequired
+  student: PropTypes.object.isRequired,
+  studentLoaded: PropTypes.bool.isRequired
 };
 
 const StudentDetail = ({
   addComment,
   comments,
+  commentsLoaded,
+  fetchComments,
   fetchStudent,
-  isLoaded,
+  studentLoaded,
   match,
   resetStudent,
   student
 }) => {
   useEffect(() => {
     const { id } = match.params;
+    fetchComments(id);
     fetchStudent(id);
     return () => resetStudent();
-  }, [match.params, fetchStudent, resetStudent]);
+  }, [match.params, fetchComments, fetchStudent, resetStudent]);
 
-  useEffect(() => console.log(comments), [comments]);
+  const submit = values => addComment(values, match.params.id);
 
-  const submit = values => addComment(values);
-
-  if (!isLoaded) {
+  if (!studentLoaded) {
     return <h1>Loading...</h1>;
   }
 
@@ -58,12 +64,16 @@ const StudentDetail = ({
 
 const mapStateToProps = state => ({
   comments: state.student.comments,
-  isLoaded: state.student.studentLoaded,
+  commentsLoaded: state.student.commentsLoaded,
+  studentLoaded: state.student.studentLoaded,
   student: state.student
 });
 
 const mapDispatchToProps = dispatch =>
-  bindActionCreators({ addComment, fetchStudent, resetStudent }, dispatch);
+  bindActionCreators(
+    { addComment, fetchComments, fetchStudent, resetStudent },
+    dispatch
+  );
 
 StudentDetail.propTypes = propTypes;
 

@@ -1,6 +1,6 @@
 import {
-  ADD_COMMENT,
-  FETCH_STUDENT,
+  COMMENT_ADDED,
+  COMMENTS_RECEIVED,
   RESET_STUDENT,
   REMOVE_COMMENT,
   STUDENT_RECEIVED
@@ -9,39 +9,44 @@ import {
 const initialState = {
   student: {
     comments: [],
-    image: '',
-    name: '',
-    profile: '',
+    commentsLoaded: false,
+    image: null,
+    name: null,
+    profile: null,
     repos: [],
     student: {},
-    studentLoaded: false,
-    studentLoading: false
+    studentLoaded: false
   },
   form: {}
 };
 
 export default function(state = initialState, action) {
-  const { payload, type } = action;
+  const { i, payload, type } = action;
   switch (type) {
-    case ADD_COMMENT:
+    case COMMENT_ADDED:
       return { ...state, comments: [...state.comments, payload] };
-    case FETCH_STUDENT:
-      return { ...state, studentLoading: true };
+    case COMMENTS_RECEIVED:
+      return {
+        ...state,
+        comments: payload,
+        commentsLoaded: true
+      };
     case RESET_STUDENT:
       return {
         ...state,
+        comments: [],
+        commentsLoaded: false,
         image: null,
         name: null,
         profile: null,
-        studentLoaded: false,
-        studentLoading: false
+        studentLoaded: false
       };
     case REMOVE_COMMENT:
       return {
         ...state,
         comments: [
-          ...state.comments.slice(0, payload),
-          ...state.comments.slice(payload + 1)
+          ...state.comments.slice(0, i),
+          ...state.comments.slice(i + 1)
         ]
       };
     case STUDENT_RECEIVED:
@@ -51,8 +56,7 @@ export default function(state = initialState, action) {
         name: payload.name,
         profile: payload.profile,
         repos: payload.repos,
-        studentLoaded: true,
-        studentLoading: false
+        studentLoaded: true
       };
     default:
       return state;

@@ -1,11 +1,16 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 
-let CommentForm = ({ handleSubmit, pristine, reset, submitting }) => (
+let CommentForm = ({ handleSubmit, pristine, submitting }) => (
   <div>
     <form onSubmit={handleSubmit}>
-      <label htmlFor="comment">Comment</label>
-      <Field name="comment" component="input" type="text" />
+      <Field name="author" component="input" type="text" placeholder="author" />
+      <Field
+        name="comment"
+        component="input"
+        type="text"
+        placeholder="add a comment"
+      />
       <button type="submit" disabled={pristine || submitting}>
         Submit
       </button>

@@ -1,7 +1,7 @@
 const router = require('express').Router();
-const musicRoutes = require('./music');
+const devpoolRoutes = require('./devpool');
 
-router.use('/music', musicRoutes);
+router.use('/', devpoolRoutes);
 
 router.get('*', (req, res) =>
   res.sendFile(path.join(__dirname, './client/build/index.html'))

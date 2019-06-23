@@ -1,7 +1,7 @@
 const express = require('express');
 const PORT = process.env.PORT || 3001;
 const app = express();
-// const routes = require('./routes');
+const routes = require('./routes');
 const db = require('./models');
 
 app.use(express.urlencoded({ extended: true }));
@@ -11,7 +11,7 @@ if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
 }
 
-// app.use(routes);
+app.use(routes);
 
 const syncOptions = { force: false };
 
