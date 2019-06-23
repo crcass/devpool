@@ -10,7 +10,7 @@ import {
 } from './actions';
 import Comments from './layout/Comments';
 import CommentForm from './layout/CommentForm';
-import Repos from './layout/Repos';
+import Repos from '../../components/Repos';
 import { titleCase } from '../../helpers';
 
 const propTypes = {
@@ -25,8 +25,6 @@ const propTypes = {
 
 const StudentDetail = ({
   addComment,
-  comments,
-  commentsLoaded,
   fetchComments,
   fetchStudent,
   studentLoaded,
@@ -69,8 +67,6 @@ const StudentDetail = ({
 };
 
 const mapStateToProps = state => ({
-  comments: state.student.comments,
-  commentsLoaded: state.student.commentsLoaded,
   studentLoaded: state.student.studentLoaded,
   student: state.student
 });

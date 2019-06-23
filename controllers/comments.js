@@ -1,13 +1,6 @@
-var db = require('../models');
+const db = require('../models');
 
 module.exports = {
-  getStudents: function(req, res) {
-    db.Students.findAll({}).then(data => res.json(data));
-  },
-  getStudent: function(req, res) {
-    const { github } = req.params;
-    db.Students.findOne({ where: { github } }).then(data => res.json(data));
-  },
   getComments: function(req, res) {
     const { user } = req.params;
     db.Comments.findAll({ where: { user } }).then(data => res.json(data));
@@ -15,7 +8,13 @@ module.exports = {
   postComment: function(req, res) {
     const { user } = req.params;
     const { author, comment } = req.body;
-    db.Comments.create({ author, comment, user }).then(data => res.json(data));
+    let { link } = req.body;
+    if (link === undefined) {
+      link = null;
+    }
+    db.Comments.create({ author, comment, user, link }).then(data =>
+      res.json(data)
+    );
   },
   deleteComment: function(req, res) {
     const { id } = req.params;

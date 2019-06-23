@@ -11,6 +11,12 @@ let CommentForm = ({ handleSubmit, pristine, submitting }) => (
         type="text"
         placeholder="add a comment"
       />
+      <Field
+        name="link"
+        component="input"
+        type="url"
+        placeholder="link (optional)"
+      />
       <button type="submit" disabled={pristine || submitting}>
         Submit
       </button>

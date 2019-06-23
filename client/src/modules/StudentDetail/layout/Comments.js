@@ -8,6 +8,11 @@ const renderComments = (comments, removeComment) =>
   comments.map((comment, i) => (
     <div key={comment.id}>
       <p>{comment.comment}</p>
+      {comment.link !== null && (
+        <a href={comment.link} target="_blank" rel="noopener noreferrer">
+          Click
+        </a>
+      )}
       <button onClick={() => removeComment(comment.id, i)}>&times;</button>
     </div>
   ));

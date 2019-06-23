@@ -1,7 +1,10 @@
 const router = require('express').Router();
-const devpoolRoutes = require('./devpool');
+const commentRoutes = require('./comments');
+const studentRoutes = require('./students');
 
-router.use('/', devpoolRoutes);
+const routes = [commentRoutes, studentRoutes];
+
+router.use('/', routes);
 
 router.get('*', (req, res) =>
   res.sendFile(path.join(__dirname, './client/build/index.html'))
