@@ -1,10 +1,12 @@
 import { combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
-import { COMMENT_ADDED } from './modules/StudentDetail/actions';
+import { COMMENT_ADDED } from './modules/Comments/actions';
+import comments from './modules/Comments/reducer';
 import student from './modules/StudentDetail/reducer';
 import students from './modules/StudentList/reducer';
 
 const rootReducer = combineReducers({
+  comments,
   student,
   students,
   form: formReducer.plugin({

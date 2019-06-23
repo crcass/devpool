@@ -1,4 +1,4 @@
-import { fork, put, take } from 'redux-saga/effects';
+import { call, put, take } from 'redux-saga/effects';
 import { REMOVE_COMMENT, COMMENT_REMOVED } from '../actions';
 import { deleteComment } from '../../../api';
 
@@ -10,6 +10,6 @@ function* addComment(id) {
 export default function* actionWatcher() {
   while (true) {
     const { payload } = yield take(REMOVE_COMMENT);
-    yield fork(addComment, payload);
+    yield call(addComment, payload);
   }
 }

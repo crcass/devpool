@@ -2,8 +2,15 @@ const db = require('../models');
 
 module.exports = {
   getComments: function(req, res) {
-    const { user } = req.params;
-    db.Comments.findAll({ where: { user } }).then(data => res.json(data));
+    const { author, user } = req.params;
+    if (author === 'undefined') {
+      return db.Comments.findAll({ where: { user } }).then(data =>
+        res.json(data)
+      );
+    }
+    db.Comments.findAll({ where: { user, author } }).then(data =>
+      res.json(data)
+    );
   },
   postComment: function(req, res) {
     const { user } = req.params;

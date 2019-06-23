@@ -2,7 +2,7 @@ const router = require('express').Router();
 const commentsController = require('../../controllers/comments');
 
 router
-  .route('/comments/:user')
+  .route('/comments/:user/:author')
   .get(commentsController.getComments)
   .post(commentsController.postComment);
 

@@ -2,14 +2,10 @@ import React, { Fragment, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import {
-  addComment,
-  fetchComments,
-  fetchStudent,
-  resetStudent
-} from './actions';
-import Comments from './layout/Comments';
-import CommentForm from './layout/CommentForm';
+import { fetchStudent, resetStudent } from './actions';
+import { addComment, fetchComments } from '../Comments/actions';
+import Comments from '../Comments';
+import CommentForm from '../CommentForm';
 import Repos from '../../components/Repos';
 import { titleCase } from '../../helpers';
 
@@ -25,6 +21,7 @@ const propTypes = {
 
 const StudentDetail = ({
   addComment,
+  author,
   fetchComments,
   fetchStudent,
   studentLoaded,
@@ -34,10 +31,10 @@ const StudentDetail = ({
 }) => {
   useEffect(() => {
     const { id } = match.params;
-    fetchComments(id);
+    fetchComments(id, author);
     fetchStudent(id);
     return () => resetStudent();
-  }, [match.params, fetchComments, fetchStudent, resetStudent]);
+  }, [author, match.params, fetchComments, fetchStudent, resetStudent]);
 
   const submit = values => addComment(values, match.params.id);
 
@@ -67,6 +64,7 @@ const StudentDetail = ({
 };
 
 const mapStateToProps = state => ({
+  author: 'bob',
   studentLoaded: state.student.studentLoaded,
   student: state.student
 });

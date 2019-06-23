@@ -28,9 +28,9 @@ export async function loadStudent(user) {
   }
 }
 
-export async function getComments(user) {
+export async function getComments(user, author) {
   try {
-    const response = await axios.get(`/api/comments/${user}`);
+    const response = await axios.get(`/api/comments/${user}/${author}`);
     return response;
   } catch (error) {
     throw error;
