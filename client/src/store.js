@@ -6,6 +6,9 @@ import rootReducer from './rootReducer';
 import rootSaga from './rootSaga';
 
 const initialState = {
+  auth: {
+    currentUser: null
+  },
   comments: { comments: [], commentsLoaded: false },
   student: {
     github: null,

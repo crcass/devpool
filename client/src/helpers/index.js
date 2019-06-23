@@ -1,3 +1,9 @@
+export const formatGoogleUser = user => ({
+  email: user.email,
+  name: user.displayName,
+  uid: user.uid
+});
+
 export const formatDetailAPIResults = (student, data) => ({
   github: data[0].owner.html_url,
   linkedin: student.linkedin,

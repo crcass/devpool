@@ -24,10 +24,10 @@ const StudentDetail = ({
   author,
   fetchComments,
   fetchStudent,
-  studentLoaded,
   match,
   resetStudent,
-  student
+  student,
+  studentLoaded
 }) => {
   useEffect(() => {
     const { id } = match.params;
@@ -36,7 +36,10 @@ const StudentDetail = ({
     return () => resetStudent();
   }, [author, match.params, fetchComments, fetchStudent, resetStudent]);
 
-  const submit = values => addComment(values, match.params.id);
+  const submit = values => {
+    const user = match.params.id;
+    addComment(values, user, author);
+  };
 
   if (!studentLoaded) {
     return <h1>Loading...</h1>;
@@ -57,14 +60,14 @@ const StudentDetail = ({
         Portfolio
       </a>
       <Comments />
-      <CommentForm onSubmit={submit} />
+      <CommentForm author={author} onSubmit={submit} />
       <Repos repos={student.repos} />
     </Fragment>
   );
 };
 
 const mapStateToProps = state => ({
-  author: 'bob',
+  author: state.auth.currentUser.uid,
   studentLoaded: state.student.studentLoaded,
   student: state.student
 });

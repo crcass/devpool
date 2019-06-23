@@ -13,8 +13,8 @@ module.exports = {
     );
   },
   postComment: function(req, res) {
-    const { user } = req.params;
-    const { author, comment } = req.body;
+    const { user, author } = req.params;
+    const { comment } = req.body;
     let { link } = req.body;
     if (link === undefined) {
       link = null;

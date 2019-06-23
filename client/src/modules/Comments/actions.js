@@ -4,10 +4,12 @@ export const COMMENTS_RECEIVED = 'COMMENTS_RECEIVED';
 export const COMMENT_REMOVED = 'COMMENT_REMOVED';
 export const FETCH_COMMENTS = 'FETCH_COMMENTS';
 export const REMOVE_COMMENT = 'REMOVE_COMMENT';
-export const addComment = (payload, user) => ({
+
+export const addComment = (payload, user, author) => ({
   type: ADD_COMMENT,
   payload,
-  user
+  user,
+  author
 });
 
 export const commentAdded = () => ({ type: COMMENT_ADDED });

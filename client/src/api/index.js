@@ -37,9 +37,9 @@ export async function getComments(user, author) {
   }
 }
 
-export async function postComment(user, data) {
+export async function postComment(user, author, data) {
   try {
-    const response = await axios.post(`/api/comments/${user}`, data);
+    const response = await axios.post(`/api/comments/${user}/${author}`, data);
     return response;
   } catch (error) {
     throw error;
