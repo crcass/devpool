@@ -10,7 +10,7 @@ const renderRepos = repos => {
     <div key={repo.id}>
       <p>{repo.name}</p>
       <p>{repo.language}</p>
-      <p>{repo.description}</p>
+      {repo.description !== null && <p>{repo.description}</p>}
       <a href={repo.url} target="_blank" rel="noopener noreferrer">
         View Repo on Github
       </a>

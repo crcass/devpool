@@ -1,6 +1,6 @@
 import { fork, put, take } from 'redux-saga/effects';
-import { REMOVE_COMMENT, COMMENT_REMOVED } from './actions';
-import { deleteComment } from '../../api';
+import { REMOVE_COMMENT, COMMENT_REMOVED } from '../actions';
+import { deleteComment } from '../../../api';
 
 function* addComment(id) {
   const payload = yield deleteComment(id).then(response => response.data);

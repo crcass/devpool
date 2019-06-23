@@ -1,7 +1,7 @@
 import { fork, put, take } from 'redux-saga/effects';
-import { COMMENTS_RECEIVED, FETCH_STUDENT, STUDENT_RECEIVED } from './actions';
-import { getComments, getStudent, loadStudent } from '../../api';
-import { formatDetailAPIResults } from '../../helpers';
+import { COMMENTS_RECEIVED, FETCH_STUDENT, STUDENT_RECEIVED } from '../actions';
+import { getComments, getStudent, loadStudent } from '../../../api';
+import { formatDetailAPIResults } from '../../../helpers';
 
 function* fetchComments(user) {
   const payload = yield getComments(user).then(response => response.data);
