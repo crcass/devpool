@@ -10,11 +10,12 @@ const initialState = {
   student: {
     comments: [],
     commentsLoaded: false,
+    github: null,
+    linkedin: null,
     image: null,
     name: null,
-    profile: null,
+    portfolio: null,
     repos: [],
-    student: {},
     studentLoaded: false
   },
   form: {}
@@ -37,8 +38,10 @@ export default function(state = initialState, action) {
         comments: [],
         commentsLoaded: false,
         image: null,
+        github: null,
+        linkedin: null,
         name: null,
-        profile: null,
+        portfolio: null,
         studentLoaded: false
       };
     case REMOVE_COMMENT:
@@ -52,10 +55,7 @@ export default function(state = initialState, action) {
     case STUDENT_RECEIVED:
       return {
         ...state,
-        image: payload.image,
-        name: payload.name,
-        profile: payload.profile,
-        repos: payload.repos,
+        ...payload,
         studentLoaded: true
       };
     default:

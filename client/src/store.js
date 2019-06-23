@@ -9,9 +9,11 @@ const initialState = {
   student: {
     comments: [],
     commentsLoaded: false,
+    github: null,
+    linkedin: null,
     image: null,
     name: null,
-    profile: null,
+    portfolio: null,
     repos: [],
     studentLoaded: false
   },

@@ -10,8 +10,11 @@ const renderStudents = students =>
     <Student
       key={student.id}
       github={student.github}
+      githubLink={student.githubLink}
+      linkedin={student.linkedin}
       image={student.image}
       name={student.name}
+      portfolio={student.portfolio}
     />
   ));
 

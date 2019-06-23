@@ -52,8 +52,14 @@ const StudentDetail = ({
       <h1>Student Detail</h1>
       <h2>{titleCase(student.name)}</h2>
       <img src={student.image} alt={student.name} />
-      <a href={student.profile} target="_blank" rel="noopener noreferrer">
+      <a href={student.github} target="_blank" rel="noopener noreferrer">
         Github
+      </a>
+      <a href={student.linkedin} target="_blank" rel="noopener noreferrer">
+        LinkedIn
+      </a>
+      <a href={student.portfolio} target="_blank" rel="noopener noreferrer">
+        Portfolio
       </a>
       <Comments />
       <CommentForm onSubmit={submit} />

@@ -1,7 +1,6 @@
 import { fork, put, take } from 'redux-saga/effects';
 import { COMMENTS_RECEIVED, FETCH_STUDENT, STUDENT_RECEIVED } from './actions';
-import { getComments, getStudent } from '../../api';
-import studentData from '../../data';
+import { getComments, getStudent, loadStudent } from '../../api';
 import { formatDetailAPIResults } from '../../helpers';
 
 function* fetchComments(user) {
@@ -10,6 +9,7 @@ function* fetchComments(user) {
 }
 
 function* fetchStudent(user) {
+  const studentData = yield loadStudent(user).then(response => response.data);
   const payload = yield getStudent(
     `${user}/repos?affiliation=owner&sort=created`
   ).then(response => formatDetailAPIResults(studentData, response.data));

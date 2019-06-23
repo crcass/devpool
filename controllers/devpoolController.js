@@ -1,6 +1,13 @@
 var db = require('../models');
 
 module.exports = {
+  getStudents: function(req, res) {
+    db.Students.findAll({}).then(data => res.json(data));
+  },
+  getStudent: function(req, res) {
+    const { github } = req.params;
+    db.Students.findOne({ where: { github } }).then(data => res.json(data));
+  },
   getComments: function(req, res) {
     const { user } = req.params;
     db.Comments.findAll({ where: { user } }).then(data => res.json(data));

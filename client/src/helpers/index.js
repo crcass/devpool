@@ -1,10 +1,9 @@
-const findMatch = (arr, login) =>
-  arr.filter(item => item.github === login)[0].name;
-
-export const formatDetailAPIResults = (students, data) => ({
+export const formatDetailAPIResults = (student, data) => ({
+  github: data[0].owner.html_url,
+  linkedin: student.linkedin,
   image: data[0].owner.avatar_url,
-  name: findMatch(students, data[0].owner.login),
-  profile: data[0].owner.html_url,
+  name: student.name,
+  portfolio: student.portfolio,
   repos: data
     .filter((repo, i) => i < 4)
     .map(repo => ({
@@ -18,9 +17,12 @@ export const formatDetailAPIResults = (students, data) => ({
 
 export const formatListAPIResults = (student, data) => ({
   github: student.github,
+  githubLink: data.html_url,
   id: data.id,
   image: data.avatar_url,
-  name: student.name
+  linkedin: student.linkedin,
+  name: student.name,
+  portfolio: student.portfolio
 });
 
 export const titleCase = str =>
