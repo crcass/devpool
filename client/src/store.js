@@ -7,7 +7,9 @@ import rootSaga from './rootSaga';
 
 const initialState = {
   auth: {
-    currentUser: null
+    currentUser: null,
+    loggedIn: false,
+    loggingIn: false
   },
   comments: { comments: [], commentsLoaded: false },
   student: {
