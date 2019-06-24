@@ -1,14 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Logout from '../Logout';
 import NotFound from '../components/NotFound';
-import Login from '../Login';
-import PrivateRoutes from './PrivateRoute';
+import Login from '../auth/Login';
+import PrivateRoutes from './PrivateRoutes';
 
 const Routes = ({ currentUser }) => {
   return (
     <Router>
-      <nav>This is a nav bar</nav>
+      <nav>
+        This is a nav bar
+        <Logout />
+      </nav>
       <Switch>
         <Route exact path="/" component={Login} />
         <PrivateRoutes currentUser={currentUser} />

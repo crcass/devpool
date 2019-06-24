@@ -1,4 +1,4 @@
-export const formatGoogleUser = data => ({
+export const formatAuthenticatedUser = data => ({
   email: data.user.email,
   name: data.user.displayName,
   provider: data.additionalUserInfo.providerId,

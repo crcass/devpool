@@ -1,4 +1,4 @@
-import { LOGIN_COMPLETE, USER_LOGIN } from './actions';
+import { LOGIN_COMPLETE, LOGOUT_COMPLETE, USER_LOGIN } from './actions';
 
 const initialState = {
   currentUser: null,
@@ -18,6 +18,8 @@ export default function(state = initialState, action) {
       };
     case USER_LOGIN:
       return { ...state, loggingIn: true };
+    case LOGOUT_COMPLETE:
+      return { ...state, currentUser: null, loggedIn: false };
     default:
       return state;
   }

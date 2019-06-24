@@ -1,7 +1,6 @@
 import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
-import NotFound from '../components/NotFound';
-import { studentRoutes } from '../constants/routes';
+import { jobRoutes, studentRoutes } from '../constants/routes';
 
 const PrivateRoute = ({ component: Component, currentUser, ...rest }) => (
   <Route
@@ -30,11 +29,9 @@ const PrivateRoutes = ({ currentUser }) => {
   if (!currentUser) {
     return <Redirect to="/" />;
   }
-  return currentUser.provider === 'google.com' ? (
-    renderRoutes(currentUser, studentRoutes)
-  ) : (
-    <NotFound />
-  );
+  return currentUser.provider === 'google.com'
+    ? renderRoutes(currentUser, studentRoutes)
+    : renderRoutes(currentUser, jobRoutes);
 };
 
 export default PrivateRoutes;
