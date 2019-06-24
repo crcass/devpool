@@ -24,14 +24,14 @@ const propTypes = {
   students: PropTypes.array.isRequired
 };
 
-const StudentList = ({ fetchStudents, isLoaded, students }) => {
+const StudentList = ({ currentUser, fetchStudents, isLoaded, students }) => {
   useEffect(() => {
     if (!isLoaded) {
       fetchStudents();
     }
   }, [isLoaded, fetchStudents]);
 
-  if (!isLoaded) {
+  if (!isLoaded || !currentUser) {
     return <h1>Loading...</h1>;
   }
 
@@ -44,6 +44,7 @@ const StudentList = ({ fetchStudents, isLoaded, students }) => {
 };
 
 const mapStateToProps = state => ({
+  currentUser: state.auth.currentUser,
   students: state.students.students,
   isLoaded: state.students.studentsLoaded
 });

@@ -1,7 +1,8 @@
-export const formatGoogleUser = user => ({
-  email: user.email,
-  name: user.displayName,
-  uid: user.uid
+export const formatGoogleUser = data => ({
+  email: data.user.email,
+  name: data.user.displayName,
+  provider: data.additionalUserInfo.providerId,
+  uid: data.user.uid
 });
 
 export const formatDetailAPIResults = (student, data) => ({

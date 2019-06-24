@@ -1,6 +1,20 @@
 import React from 'react';
-import { signIn } from './Auth/api';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { userLogin } from './auth/actions';
 
-const Login = () => <button onClick={signIn}>Sign In With Google</button>;
+const Login = ({ currentUser, history, userLogin }) => (
+  <button onClick={() => userLogin(history)}>Sign In With Google</button>
+);
 
-export default Login;
+const mapStateToProps = state => ({
+  currentUser: state.auth.currentUser
+});
+
+const mapDispatchToProps = dispatch =>
+  bindActionCreators({ userLogin }, dispatch);
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Login);

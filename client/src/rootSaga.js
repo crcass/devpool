@@ -1,6 +1,6 @@
 import { all } from 'redux-saga/effects';
 import watchComments from './modules/Comments/sagas';
-import watchLogin from './Auth/sagas';
+import watchLogin from './auth/sagas';
 import watchStudent from './modules/StudentDetail/sagas';
 import watchStudents from './modules/StudentList/sagas';
 

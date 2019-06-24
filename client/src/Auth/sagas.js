@@ -1,15 +1,17 @@
-import { put, takeLatest } from 'redux-saga/effects';
+import { call, put, take } from 'redux-saga/effects';
 import { USER_LOGIN, LOGIN_COMPLETE } from './actions';
 import { signIn } from './api';
 import { formatGoogleUser } from '../helpers';
 
-function* handleLogin() {
-  const payload = yield signIn().then(response =>
-    formatGoogleUser(response.user)
-  );
+function* handleLogin(history) {
+  const payload = yield signIn().then(response => formatGoogleUser(response));
   yield put({ type: LOGIN_COMPLETE, payload });
+  payload.provider === 'google.com'
+    ? history.push('/students')
+    : console.log('GITHUB TIME');
 }
 
 export default function* actionWatcher() {
-  yield takeLatest(USER_LOGIN, handleLogin);
+  const { history } = yield take(USER_LOGIN);
+  yield call(handleLogin, history);
 }

@@ -1,19 +1,28 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import StudentList from '../modules/StudentList';
-import StudentDetail from '../modules/StudentDetail';
 import NotFound from '../components/NotFound';
 import Login from '../Login';
 
-const Routes = () => (
+import PrivateRoutes from './PrivateRoutes';
+
+const Routes = ({ currentUser }) => (
   <Router>
-    <Login />
+    <nav>This is a nav bar</nav>
     <Switch>
-      <Route exact path="/" component={StudentList} />
-      <Route path="/students/:id" component={StudentDetail} />
+      <Route exact path="/" component={Login} />
+      <Route
+        component={props => (
+          <PrivateRoutes {...props} currentUser={currentUser} />
+        )}
+      />
       <Route component={NotFound} />
     </Switch>
   </Router>
 );
 
-export default Routes;
+const mapStateToProps = state => ({
+  currentUser: state.auth.currentUser
+});
+
+export default connect(mapStateToProps)(Routes);

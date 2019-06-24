@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
 import { COMMENT_ADDED } from './modules/Comments/actions';
-import auth from './Auth/reducer';
+import auth from './auth/reducer';
 import comments from './modules/Comments/reducer';
 import student from './modules/StudentDetail/reducer';
 import students from './modules/StudentList/reducer';
