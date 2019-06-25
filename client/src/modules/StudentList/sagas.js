@@ -1,13 +1,14 @@
 import { all, put, takeLatest } from 'redux-saga/effects';
 import { FETCH_STUDENTS, STUDENTS_RECEIVED } from './actions';
-import { getStudent, getStudents } from '../../api';
+import { getData } from '../../api';
+import { githubProfile, allStudents } from '../../constants/endpoints';
 import { formatListAPIResults } from '../../helpers';
 
 function* fetchStudents() {
-  const studentData = yield getStudents().then(data => data.data);
+  const studentData = yield getData(allStudents).then(data => data.data);
   const payload = yield all(
     studentData.map(student =>
-      getStudent(student.github).then(response =>
+      getData(githubProfile(student.github)).then(response =>
         formatListAPIResults(student, response.data)
       )
     )

@@ -1,9 +1,10 @@
 import { call, put, take } from 'redux-saga/effects';
 import { ADD_COMMENT, COMMENT_ADDED } from '../actions';
-import { postComment } from '../../../api';
+import { postData } from '../../../api';
+import { createComment } from '../../../constants/endpoints';
 
 function* addComment(user, author, data) {
-  const payload = yield postComment(user, author, data).then(
+  const payload = yield postData(createComment(user, author), data).then(
     response => response.data
   );
   yield put({ type: COMMENT_ADDED, payload });

@@ -1,10 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import JobsForm from '../JobsForm';
-import { addJob } from '../JobsForm/actions';
+import { addJob, fetchJobs } from './actions';
 
-const JobsList = ({ addJob, currentUser }) => {
+const JobsList = ({ addJob, currentUser, fetchJobs, isLoaded, jobs }) => {
+  useEffect(() => {
+    if (!isLoaded) {
+      fetchJobs();
+    }
+  }, [fetchJobs, isLoaded]);
+
   const handleSubmit = values => addJob(values);
   const { provider } = currentUser;
 
@@ -19,10 +25,13 @@ const JobsList = ({ addJob, currentUser }) => {
 };
 
 const mapStateToProps = state => ({
-  currentUser: state.auth.currentUser
+  currentUser: state.auth.currentUser,
+  isLoaded: state.jobs.jobsLoaded,
+  jobs: state.jobs.jobs
 });
 
-const mapDispatchToProps = dispatch => bindActionCreators({ addJob }, dispatch);
+const mapDispatchToProps = dispatch =>
+  bindActionCreators({ addJob, fetchJobs }, dispatch);
 
 export default connect(
   mapStateToProps,

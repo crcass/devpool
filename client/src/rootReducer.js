@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
 import { COMMENT_ADDED } from './modules/Comments/actions';
-import { JOB_ADDED } from './modules/JobsForm/actions';
+import { JOB_ADDED } from './modules/JobsList/actions';
 import auth from './auth/reducer';
 import comments from './modules/Comments/reducer';
-import jobs from './modules/JobsForm/reducer';
+import jobs from './modules/JobsList/reducer';
 import student from './modules/StudentDetail/reducer';
 import students from './modules/StudentList/reducer';
 

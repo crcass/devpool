@@ -1,9 +1,10 @@
 import { call, put, take } from 'redux-saga/effects';
-import { ADD_JOB, JOB_ADDED } from './actions';
-import { postJob } from '../../api';
+import { ADD_JOB, JOB_ADDED } from '../actions';
+import { postData } from '../../../api';
+import { allJobs } from '../../../constants/endpoints';
 
 function* addJob(data) {
-  const payload = yield postJob(data).then(response => response.data);
+  const payload = yield postData(allJobs, data).then(response => response.data);
   yield put({ type: JOB_ADDED, payload });
 }
 
