@@ -4,7 +4,7 @@ This project is currently in active development. This readme will be updated whe
 
 ## Technology
 
-This app was built with [React](https://reactjs.org/), [React Redux](https://react-redux.js.org/), [Redux-Saga](https://redux-saga.js.org/), [Redux Form](https://redux-form.com/)[React Router](https://reacttraining.com/react-router/), [Firebase](https://firebase.google.com/), [Express.js](https://expressjs.com/), [Node.js](https://nodejs.org/en/), [Axios](https://www.npmjs.com/package/axios), [MySQL](https://www.mysql.com/), [Sequelize](http://docs.sequelizejs.com/), & [styled-components](https://www.styled-components.com/)
+This app was built with [React](https://reactjs.org/), [React Redux](https://react-redux.js.org/), [Redux-Saga](https://redux-saga.js.org/), [Redux Form](https://redux-form.com/), [React Router](https://reacttraining.com/react-router/), [Firebase](https://firebase.google.com/), [Express.js](https://expressjs.com/), [Node.js](https://nodejs.org/en/), [Axios](https://www.npmjs.com/package/axios), [MySQL](https://www.mysql.com/), [Sequelize](http://docs.sequelizejs.com/), & [styled-components](https://www.styled-components.com/)
 
 ## Concept
 
