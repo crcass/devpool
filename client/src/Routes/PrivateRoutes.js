@@ -1,15 +1,7 @@
 import React from 'react';
-import { Redirect, Route } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
+import PrivateRoute from './PrivateRoute';
 import { jobRoutes, studentRoutes } from '../constants/routes';
-
-const PrivateRoute = ({ component: Component, currentUser, ...rest }) => (
-  <Route
-    {...rest}
-    render={props =>
-      currentUser ? <Component {...props} /> : <Redirect to="/" />
-    }
-  />
-);
 
 const renderRoutes = (currentUser, routes) =>
   routes.map(route => {

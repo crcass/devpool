@@ -11,7 +11,7 @@ const Routes = ({ currentUser }) => {
     <Router>
       <nav>
         This is a nav bar
-        <Logout />
+        {currentUser && <Logout />}
       </nav>
       <Switch>
         <Route exact path="/" component={Login} />

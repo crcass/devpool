@@ -16,7 +16,7 @@ module.exports = {
     const { user, author } = req.params;
     const { comment } = req.body;
     let { link } = req.body;
-    if (link === undefined) {
+    if (!link) {
       link = null;
     }
     db.Comments.create({ author, comment, user, link }).then(data =>

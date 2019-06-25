@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-export async function getStudent(user) {
-  const url = `https://api.github.com/users/${user}`;
+export async function getStudent(id) {
+  const url = `https://api.github.com/users/${id}`;
   try {
     const response = await axios.get(url);
     return response;
@@ -19,18 +19,20 @@ export async function getStudents() {
   }
 }
 
-export async function loadStudent(user) {
+export async function loadStudent(id) {
+  const url = `/api/students/${id}`;
   try {
-    const response = await axios.get(`/api/students/${user}`);
+    const response = await axios.get(url);
     return response;
   } catch (error) {
     throw error;
   }
 }
 
-export async function getComments(user, author) {
+export async function getComments(id, author) {
+  const url = `/api/comments/${id}/${author}`;
   try {
-    const response = await axios.get(`/api/comments/${user}/${author}`);
+    const response = await axios.get(url);
     return response;
   } catch (error) {
     throw error;
