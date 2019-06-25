@@ -12,6 +12,7 @@ const initialState = {
     loggingIn: false
   },
   comments: { comments: [], commentsLoaded: false },
+  jobs: { jobs: [], jobsLoaded: false },
   student: {
     github: null,
     linkedin: null,

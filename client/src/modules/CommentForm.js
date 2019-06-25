@@ -1,7 +1,7 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 
-let CommentForm = ({ author, handleSubmit, pristine, submitting }) => (
+let CommentForm = ({ handleSubmit, pristine, submitting }) => (
   <div>
     <form onSubmit={handleSubmit}>
       <Field

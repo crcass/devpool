@@ -56,3 +56,12 @@ export async function deleteComment(id) {
     throw error;
   }
 }
+
+export async function postJob(data) {
+  try {
+    const response = await axios.post('/api/jobs/', data);
+    return response;
+  } catch (error) {
+    throw error;
+  }
+}

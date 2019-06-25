@@ -17,7 +17,7 @@ module.exports = {
       website,
       image,
       title,
-      desecription,
+      description,
       link
     } = req.body;
     db.Jobs.create({
@@ -26,7 +26,7 @@ module.exports = {
       website,
       image,
       title,
-      desecription,
+      description,
       link
     }).then(data => res.json(data));
   },
