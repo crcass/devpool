@@ -48,7 +48,6 @@ const renderJob = (currentUser, deleteJob, jobs, route, saved, saveJob) => {
 const JobDetail = ({ currentUser, deleteJob, jobs, match, saved, saveJob }) => (
   <div>
     <h1>Job Details</h1>
-    <p>{saved}</p>
     {renderJob(currentUser, deleteJob, jobs, match.params.id, saved, saveJob)}
   </div>
 );

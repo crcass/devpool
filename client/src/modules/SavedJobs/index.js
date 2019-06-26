@@ -3,22 +3,19 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Job from '../../components/Job';
-import JobsForm from '../JobsForm';
-import { addJob, fetchJobs } from './actions';
+import { fetchSavedJobs } from '../JobDetail/actions';
 
 const propTypes = {
-  addJob: PropTypes.func.isRequired,
   currentUser: PropTypes.shape({
     email: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     provider: PropTypes.string.isRequired,
     uid: PropTypes.string.isRequired
   }).isRequired,
-  fetchJobs: PropTypes.func.isRequired,
+  fetchSavedJobs: PropTypes.func.isRequired,
   isLoaded: PropTypes.bool.isRequired,
   jobs: PropTypes.array
 };
-
 const renderJobs = jobs =>
   jobs.map(job => (
     <Job
@@ -28,47 +25,39 @@ const renderJobs = jobs =>
       id={job.id}
       image={job.image}
       link={job.link}
-      route={`/jobs/${job.id}`}
+      route={`/savedJobs/${job.jobId}`}
       title={job.title}
       website={job.website}
     />
   ));
 
-const JobsList = ({ addJob, currentUser, fetchJobs, isLoaded, jobs }) => {
+const SavedJobs = ({ currentUser, fetchSavedJobs, isLoaded, jobs }) => {
   useEffect(() => {
     if (!isLoaded) {
-      currentUser.provider === 'google.com'
-        ? fetchJobs(currentUser.uid)
-        : fetchJobs();
+      fetchSavedJobs(currentUser.uid);
     }
-  }, [currentUser.provider, currentUser.uid, fetchJobs, isLoaded]);
-
-  const handleSubmit = values => addJob(values);
-  const { provider } = currentUser;
+  }, [currentUser.uid, fetchSavedJobs, isLoaded]);
 
   return (
     <div>
-      <h1>Jobs List</h1>
+      <h1>Saved Jobs</h1>
       {renderJobs(jobs)}
-      {provider === 'google.com' && (
-        <JobsForm currentUser={currentUser} onSubmit={handleSubmit} />
-      )}
     </div>
   );
 };
 
 const mapStateToProps = state => ({
   currentUser: state.auth.currentUser,
-  isLoaded: state.jobs.jobsLoaded,
-  jobs: state.jobs.jobs
+  isLoaded: state.savedJobs.savedJobsLoaded,
+  jobs: state.savedJobs.savedJobs
 });
 
 const mapDispatchToProps = dispatch =>
-  bindActionCreators({ addJob, fetchJobs }, dispatch);
+  bindActionCreators({ fetchSavedJobs }, dispatch);
 
-JobsList.propTypes = propTypes;
+SavedJobs.propTypes = propTypes;
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(JobsList);
+)(SavedJobs);

@@ -7,16 +7,17 @@ const propTypes = {
   description: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
   link: PropTypes.string.isRequired,
+  route: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   website: PropTypes.string.isRequired
 };
 
-const Job = ({ company, id, image, title }) => (
+const Job = ({ company, id, image, route, title }) => (
   <div>
     <h2>{title}</h2>
     <h3>{company}</h3>
     <img src={image} alt={company} />
-    <Link to={`/jobs/${id}`}>View Details</Link>
+    <Link to={route}>View Details</Link>
   </div>
 );
 

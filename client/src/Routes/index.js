@@ -12,6 +12,9 @@ const Routes = ({ currentUser }) => (
       {currentUser && currentUser.provider === 'google.com' && (
         <Link to="/profile/">PROFILE</Link>
       )}
+      {currentUser && currentUser.provider === 'github.com' && (
+        <Link to="/savedJobs/">PROFILE</Link>
+      )}
       This is a nav bar
       {currentUser && <Logout />}
     </nav>

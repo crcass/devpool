@@ -2,7 +2,8 @@ const db = require('../models');
 
 module.exports = {
   getJobs: function(req, res) {
-    db.SavedJobs.findAll({}).then(data => res.json(data));
+    const { user } = req.params;
+    db.SavedJobs.findAll({ where: { user } }).then(data => res.json(data));
   },
   postJob: function(req, res) {
     const {

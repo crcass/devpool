@@ -1,4 +1,4 @@
-import { JOB_DELETED, JOB_SAVED } from './actions';
+import { JOB_DELETED, JOB_SAVED, SAVED_JOBS_RECEIVED } from './actions';
 import { LOGOUT_COMPLETE } from '../../auth/actions';
 
 const initialState = {
@@ -21,6 +21,12 @@ export default function(state = initialState, action) {
       };
     case JOB_SAVED:
       return { ...state, savedJobs: [...state.savedJobs, payload] };
+    case SAVED_JOBS_RECEIVED:
+      return {
+        ...state,
+        savedJobs: payload,
+        savedJobsLoaded: true
+      };
     case LOGOUT_COMPLETE:
       return { ...state, ...initialState };
     default:
