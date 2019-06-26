@@ -5,7 +5,7 @@ import { JOB_ADDED } from './modules/JobsList/actions';
 import auth from './auth/reducer';
 import comments from './modules/Comments/reducer';
 import jobs from './modules/JobsList/reducer';
-import savedJobs from './modules/JobDetail/reducer';
+import savedJobs from './modules/SavedJobDetail/reducer';
 import repos from './modules/StudentDetail/reducer';
 import students from './modules/StudentList/reducer';
 

@@ -31,7 +31,7 @@ module.exports = {
     }).then(data => res.json(data));
   },
   deleteJob: function(req, res) {
-    const { id } = req.params;
-    db.SavedJobs.destroy({ where: { id } }).then(data => res.json(data));
+    const jobId = req.params.user;
+    db.SavedJobs.destroy({ where: { jobId } }).then(data => res.json(data));
   }
 };

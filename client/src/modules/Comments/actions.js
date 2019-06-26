@@ -14,7 +14,11 @@ export const addComment = (payload, user, author) => ({
 
 export const commentAdded = () => ({ type: COMMENT_ADDED });
 
-export const commentRemoved = payload => ({ type: COMMENT_REMOVED, payload });
+export const commentRemoved = (payload, i) => ({
+  type: COMMENT_REMOVED,
+  payload,
+  i
+});
 
 export const fetchComments = (id, author) => ({
   type: FETCH_COMMENTS,

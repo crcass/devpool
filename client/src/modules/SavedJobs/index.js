@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Job from '../../components/Job';
-import { fetchSavedJobs } from '../JobDetail/actions';
+import { fetchSavedJobs } from '../SavedJobDetail/actions';
 
 const propTypes = {
   currentUser: PropTypes.shape({
@@ -16,6 +16,7 @@ const propTypes = {
   isLoaded: PropTypes.bool.isRequired,
   jobs: PropTypes.array
 };
+
 const renderJobs = jobs =>
   jobs.map(job => (
     <Job

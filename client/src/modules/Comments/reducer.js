@@ -1,4 +1,9 @@
-import { COMMENT_ADDED, COMMENTS_RECEIVED, REMOVE_COMMENT } from './actions';
+import {
+  COMMENT_ADDED,
+  COMMENTS_RECEIVED,
+  COMMENT_REMOVED,
+  REMOVE_COMMENT
+} from './actions';
 import { RESET_STUDENT } from '../StudentDetail/actions';
 import { LOGOUT_COMPLETE } from '../../auth/actions';
 
@@ -20,7 +25,7 @@ export default function(state = initialState, action) {
       };
     case LOGOUT_COMPLETE:
       return { ...state, ...initialState };
-    case REMOVE_COMMENT:
+    case COMMENT_REMOVED:
       return {
         ...state,
         comments: [
