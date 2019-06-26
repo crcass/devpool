@@ -1,12 +1,10 @@
 import { call, put, take } from 'redux-saga/effects';
 import { REMOVE_JOB, JOB_REMOVED } from '../actions';
 import { deleteData } from '../../../api';
-import { removeJob } from '../../../constants/endpoints';
+import { oneJob } from '../../../constants/endpoints';
 
 function* deleteJob(id) {
-  const payload = yield deleteData(removeJob(id)).then(
-    response => response.data
-  );
+  const payload = yield deleteData(oneJob(id)).then(response => response.data);
   yield put({ type: JOB_REMOVED, payload });
 }
 

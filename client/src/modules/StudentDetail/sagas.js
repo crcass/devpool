@@ -1,22 +1,19 @@
 import { call, put, take } from 'redux-saga/effects';
-import { FETCH_STUDENT, STUDENT_RECEIVED } from './actions';
+import { FETCH_REPOS, REPOS_RECEIVED } from './actions';
 import { getData } from '../../api';
-import { oneStudent, studentRepos } from '../../constants/endpoints';
-import { formatDetailAPIResults } from '../../helpers';
+import { studentRepos } from '../../constants/endpoints';
+import { formatRepoAPIResults } from '../../helpers';
 
-function* fetchStudent(user) {
-  const studentData = yield getData(oneStudent(user)).then(
-    response => response.data
-  );
+function* fetchRepos(user) {
   const payload = yield getData(studentRepos(user)).then(response =>
-    formatDetailAPIResults(studentData, response.data)
+    formatRepoAPIResults(response.data)
   );
-  yield put({ type: STUDENT_RECEIVED, payload });
+  yield put({ type: REPOS_RECEIVED, payload });
 }
 
 export default function* actionWatcher() {
   while (true) {
-    const { payload } = yield take(FETCH_STUDENT);
-    yield call(fetchStudent, payload);
+    const { payload } = yield take(FETCH_REPOS);
+    yield call(fetchRepos, payload);
   }
 }

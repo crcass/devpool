@@ -1,6 +1,6 @@
 import { applyMiddleware, createStore } from 'redux';
 import createSagaMiddleware from 'redux-saga';
-import { composeWithDevTools } from 'redux-devtools-extension';
+import { composeWithDevTools } from 'redux-devtools-extension/logOnlyInProduction';
 import logger from 'redux-logger';
 import rootReducer from './rootReducer';
 import rootSaga from './rootSaga';
@@ -13,15 +13,11 @@ const initialState = {
   },
   comments: { comments: [], commentsLoaded: false },
   jobs: { jobs: [], jobsLoaded: false },
-  student: {
-    github: null,
-    linkedin: null,
-    image: null,
-    name: null,
-    portfolio: null,
+  repos: {
     repos: [],
-    studentLoaded: false
+    reposLoaded: false
   },
+  savedJobs: { savedJobs: [], savedJobsLoaded: false },
   students: {
     students: [],
     studentsLoading: false,

@@ -1,9 +1,9 @@
-export const FETCH_STUDENT = 'FETCH_STUDENT';
+export const FETCH_REPOS = 'FETCH_REPOS';
 export const RESET_STUDENT = 'RESET_STUDENT';
-export const STUDENT_RECEIVED = 'STUDENT_RECEIVED';
+export const REPOS_RECEIVED = 'REPOS_RECEIVED';
 
-export const fetchStudent = payload => ({
-  type: FETCH_STUDENT,
+export const fetchRepos = payload => ({
+  type: FETCH_REPOS,
   payload
 });
 

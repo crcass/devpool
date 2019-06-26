@@ -5,12 +5,7 @@ export const formatAuthenticatedUser = data => ({
   uid: data.user.uid
 });
 
-export const formatDetailAPIResults = (student, data) => ({
-  github: data[0].owner.html_url,
-  linkedin: student.linkedin,
-  image: data[0].owner.avatar_url,
-  name: student.name,
-  portfolio: student.portfolio,
+export const formatRepoAPIResults = data => ({
   repos: data
     .filter((repo, i) => i < 4)
     .map(repo => ({

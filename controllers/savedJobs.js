@@ -2,14 +2,12 @@ const db = require('../models');
 
 module.exports = {
   getJobs: function(req, res) {
-    db.Jobs.findAll({}).then(data => res.json(data));
-  },
-  getJob: function(req, res) {
-    const { id } = req.params;
-    db.Jobs.findOne({ where: { id } }).then(data => res.json(data));
+    db.SavedJobs.findAll({}).then(data => res.json(data));
   },
   postJob: function(req, res) {
     const {
+      id,
+      user,
       author,
       company,
       website,
@@ -18,7 +16,10 @@ module.exports = {
       description,
       link
     } = req.body;
-    db.Jobs.create({
+    const jobId = id;
+    db.SavedJobs.create({
+      jobId,
+      user,
       author,
       company,
       website,
@@ -30,6 +31,6 @@ module.exports = {
   },
   deleteJob: function(req, res) {
     const { id } = req.params;
-    db.Jobs.destroy({ where: { id } }).then(data => res.json(data));
+    db.SavedJobs.destroy({ where: { id } }).then(data => res.json(data));
   }
 };

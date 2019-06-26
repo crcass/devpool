@@ -12,6 +12,6 @@ A website that provides a place for recruiters to see students enrolled in a cod
 
 ## Motivation
 
-This project was an exercise to build a larger-scale, full-stack React website. I wanted to use this as an opportunity to become more familiar with libraries at tools that are being used in modern React apps.
+This project was an exercise to build a larger-scale, full-stack React website. I wanted to use this as an opportunity to become more familiar with libraries and tools that are being used in modern React apps.
 
 ♥︎ cc

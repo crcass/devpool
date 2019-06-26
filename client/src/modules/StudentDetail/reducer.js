@@ -1,14 +1,9 @@
-import { RESET_STUDENT, STUDENT_RECEIVED } from './actions';
+import { RESET_STUDENT, REPOS_RECEIVED } from './actions';
 
 const initialState = {
-  student: {
-    github: null,
-    linkedin: null,
-    image: null,
-    name: null,
-    portfolio: null,
+  repos: {
     repos: [],
-    studentLoaded: false
+    reposLoaded: false
   },
   form: {}
 };
@@ -19,18 +14,14 @@ export default function(state = initialState, action) {
     case RESET_STUDENT:
       return {
         ...state,
-        image: null,
-        github: null,
-        linkedin: null,
-        name: null,
-        portfolio: null,
-        studentLoaded: false
+        repos: [],
+        reposLoaded: false
       };
-    case STUDENT_RECEIVED:
+    case REPOS_RECEIVED:
       return {
         ...state,
         ...payload,
-        studentLoaded: true
+        reposLoaded: true
       };
     default:
       return state;

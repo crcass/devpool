@@ -1,9 +1,10 @@
 const router = require('express').Router();
 const commentRoutes = require('./comments');
 const jobRoutes = require('./jobs');
+const savedJobRoutes = require('./savedJobs');
 const studentRoutes = require('./students');
 
-const routes = [commentRoutes, jobRoutes, studentRoutes];
+const routes = [commentRoutes, jobRoutes, savedJobRoutes, studentRoutes];
 
 router.use('/', routes);
 

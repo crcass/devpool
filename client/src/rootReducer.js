@@ -5,14 +5,16 @@ import { JOB_ADDED } from './modules/JobsList/actions';
 import auth from './auth/reducer';
 import comments from './modules/Comments/reducer';
 import jobs from './modules/JobsList/reducer';
-import student from './modules/StudentDetail/reducer';
+import savedJobs from './modules/JobDetail/reducer';
+import repos from './modules/StudentDetail/reducer';
 import students from './modules/StudentList/reducer';
 
 const rootReducer = combineReducers({
   auth,
   comments,
   jobs,
-  student,
+  repos,
+  savedJobs,
   students,
   form: formReducer.plugin({
     comment: (state, action) => {
