@@ -11,8 +11,8 @@ const propTypes = {
   }).isRequired
 };
 
-const renderJob = (currentUser, deleteJob, jobs, route, saved, saveJob) =>
-  jobs
+const renderJob = (currentUser, deleteJob, jobs, route, saved, saveJob) => {
+  return jobs
     .filter(job => job.id === parseInt(route))
     .map(job => (
       <div key={job.id}>
@@ -25,20 +25,25 @@ const renderJob = (currentUser, deleteJob, jobs, route, saved, saveJob) =>
         >{`Visit ${job.company}'s Website`}</a>
         <img src={job.image} alt={job.company} />
         <p>{job.description}</p>
-        <a href={job.link} target="_blank" rel="noopener noreferrer">
-          Apply for this job
-        </a>
-        <button
-          onClick={
-            !saved
-              ? () => saveJob(job.id, currentUser, job)
-              : () => deleteJob(job.id)
-          }
-        >
-          {!saved ? 'Save this Job' : String.fromCharCode(215)}
-        </button>
+        {currentUser.provider === 'github.com' && (
+          <a href={job.link} target="_blank" rel="noopener noreferrer">
+            Apply for this job
+          </a>
+        )}
+        {currentUser.provider === 'github.com' && (
+          <button
+            onClick={
+              !saved
+                ? () => saveJob(job.id, currentUser.uid, job)
+                : () => deleteJob(job.id)
+            }
+          >
+            {!saved ? 'Save this Job' : String.fromCharCode(215)}
+          </button>
+        )}
       </div>
     ));
+};
 
 const JobDetail = ({ currentUser, deleteJob, jobs, match, saved, saveJob }) => (
   <div>
@@ -49,7 +54,7 @@ const JobDetail = ({ currentUser, deleteJob, jobs, match, saved, saveJob }) => (
 );
 
 const mapStateToProps = state => ({
-  currentUser: state.auth.currentUser.uid,
+  currentUser: state.auth.currentUser,
   jobs: state.jobs.jobs
 });
 

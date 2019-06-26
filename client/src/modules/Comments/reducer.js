@@ -1,5 +1,6 @@
 import { COMMENT_ADDED, COMMENTS_RECEIVED, REMOVE_COMMENT } from './actions';
 import { RESET_STUDENT } from '../StudentDetail/actions';
+import { LOGOUT_COMPLETE } from '../../auth/actions';
 
 const initialState = {
   comments: [],
@@ -17,6 +18,8 @@ export default function(state = initialState, action) {
         comments: payload,
         commentsLoaded: true
       };
+    case LOGOUT_COMPLETE:
+      return { ...state, ...initialState };
     case REMOVE_COMMENT:
       return {
         ...state,

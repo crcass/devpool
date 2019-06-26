@@ -1,5 +1,5 @@
-export const JOB_DELETED = 'JOB_DELETED';
-export const JOB_SAVED = 'JOB_SAVED';
+import { JOB_DELETED, JOB_SAVED } from './actions';
+import { LOGOUT_COMPLETE } from '../../auth/actions';
 
 const initialState = {
   savedJobs: {
@@ -21,6 +21,8 @@ export default function(state = initialState, action) {
       };
     case JOB_SAVED:
       return { ...state, savedJobs: [...state.savedJobs, payload] };
+    case LOGOUT_COMPLETE:
+      return { ...state, ...initialState };
     default:
       return state;
   }

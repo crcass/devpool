@@ -1,4 +1,5 @@
 import { RESET_STUDENT, REPOS_RECEIVED } from './actions';
+import { LOGOUT_COMPLETE } from '../../auth/actions';
 
 const initialState = {
   repos: {
@@ -11,6 +12,8 @@ const initialState = {
 export default function(state = initialState, action) {
   const { payload, type } = action;
   switch (type) {
+    case LOGOUT_COMPLETE:
+      return { ...state, ...initialState };
     case RESET_STUDENT:
       return {
         ...state,

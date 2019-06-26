@@ -19,7 +19,7 @@ export default function(state = initialState, action) {
     case USER_LOGIN:
       return { ...state, loggingIn: true };
     case LOGOUT_COMPLETE:
-      return { ...state, currentUser: null, loggedIn: false };
+      return { ...state, ...initialState };
     default:
       return state;
   }

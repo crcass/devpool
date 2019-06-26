@@ -2,7 +2,11 @@ const db = require('../models');
 
 module.exports = {
   getJobs: function(req, res) {
-    db.Jobs.findAll({}).then(data => res.json(data));
+    const { author } = req.params;
+    if (!author) {
+      return db.Jobs.findAll({}).then(data => res.json(data));
+    }
+    db.Jobs.findAll({ where: { author } }).then(data => res.json(data));
   },
   getJob: function(req, res) {
     const { id } = req.params;
@@ -30,6 +34,7 @@ module.exports = {
   },
   deleteJob: function(req, res) {
     const { id } = req.params;
-    db.Jobs.destroy({ where: { id } }).then(data => res.json(data));
+    console.log(id);
+    // db.Jobs.destroy({ where: { id } }).then(data => res.json(data));
   }
 };

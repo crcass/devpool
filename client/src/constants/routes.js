@@ -11,5 +11,6 @@ export const jobRoutes = [
 export const studentRoutes = [
   { path: '/students/', component: StudentList },
   { path: '/students/:id', component: StudentDetail },
-  { path: '/profile/', component: JobsList }
+  { path: '/profile/', component: JobsList },
+  { path: '/jobs/:id', component: JobDetail }
 ];

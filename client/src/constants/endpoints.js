@@ -3,7 +3,7 @@ export const createComment = (user, author) =>
 export const removeComment = id => `/api/comments/${id}`;
 export const userComments = (user, author) => `/api/comments/${user}/${author}`;
 
-export const allJobs = '/api/jobs/';
+export const allJobs = id => (id ? `/api/jobs/author/${id}` : '/api/jobs/');
 export const oneJob = id => `/api/jobs/${id}`;
 
 export const savedJobs = '/api/jobs/saved';

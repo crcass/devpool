@@ -11,4 +11,6 @@ router
   .get(jobsController.getJob)
   .delete(jobsController.deleteJob);
 
+router.route('/jobs/author/:author').get(jobsController.getJobs);
+
 module.exports = router;

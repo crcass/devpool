@@ -1,4 +1,5 @@
 import { JOB_ADDED, JOBS_RECEIVED } from './actions';
+import { LOGOUT_COMPLETE } from '../../auth/actions';
 
 const initialState = { jobs: [], jobsLoaded: false };
 
@@ -13,6 +14,8 @@ export default function(state = initialState, action) {
         jobs: payload,
         jobsLoaded: true
       };
+    case LOGOUT_COMPLETE:
+      return { ...state, ...initialState };
     default:
       return state;
   }

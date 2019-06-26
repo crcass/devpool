@@ -7,7 +7,7 @@ export const REMOVE_JOB = 'REMOVE_JOB';
 
 export const addJob = payload => ({ type: ADD_JOB, payload });
 
-export const fetchJobs = () => ({ type: FETCH_JOBS });
+export const fetchJobs = payload => ({ type: FETCH_JOBS, payload });
 
 export const jobAdded = payload => ({ type: JOB_ADDED, payload });
 

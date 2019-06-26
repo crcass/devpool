@@ -36,9 +36,11 @@ const renderJobs = jobs =>
 const JobsList = ({ addJob, currentUser, fetchJobs, isLoaded, jobs }) => {
   useEffect(() => {
     if (!isLoaded) {
-      fetchJobs();
+      currentUser.provider === 'google.com'
+        ? fetchJobs(currentUser.uid)
+        : fetchJobs();
     }
-  }, [fetchJobs, isLoaded]);
+  }, [currentUser.provider, currentUser.uid, fetchJobs, isLoaded]);
 
   const handleSubmit = values => addJob(values);
   const { provider } = currentUser;
