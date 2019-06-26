@@ -1,6 +1,6 @@
 # Codename: Mercury
 
-This project is currently in active development. This readme will be updated when the project is complete.
+This project is currently in active development. This readme will be updated as the project continues.
 
 ## Progress
 
