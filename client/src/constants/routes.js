@@ -1,11 +1,13 @@
-import JobDetail from '../modules/JobDetail';
-import JobsList from '../modules/JobsList';
-import SavedJobs from '../modules/SavedJobs';
-import SavedJobDetail from '../modules/SavedJobDetail';
-import StudentList from '../modules/StudentList';
-import StudentDetail from '../modules/StudentDetail';
+import Dashboard from '../components/Dashboard';
+import JobDetail from '../components/JobDetail';
+import JobsList from '../components/JobsList';
+import SavedJobs from '../components/SavedJobs';
+import SavedJobDetail from '../components/SavedJobDetail';
+import StudentList from '../components/StudentList';
+import StudentDetail from '../components/StudentDetail';
 
 export const jobRoutes = [
+  { path: '/dashboard/', component: Dashboard },
   { path: '/jobs', component: JobsList },
   { path: '/jobs/:id', component: JobDetail },
   { path: '/savedJobs/', component: SavedJobs },

@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
-import Logout from '../Logout';
+import Logout from '../components/Logout';
+import Login from '../components/Login';
 import NotFound from '../components/NotFound';
-import Login from '../auth/Login';
 import PrivateRoutes from './PrivateRoutes';
 
 const Routes = ({ currentUser }) => (
