@@ -16,8 +16,8 @@ This project is currently in active development. This readme will be updated as 
 - [x] Students can view a list of posted jobs and view a details page for individual jobs
 - [x] Students can save jobs to the database
 - [x] Students can delete their saved jobs from the database
-- [ ] Student dashboard - jobs listing, brief student profile, comments, saved jobs
-- [ ] Recruiter dashboard - student listing, brief recruiter profile, comments, posted jobs
+- [x] Student dashboard - jobs listing, brief student profile, comments, saved jobs
+- [x] Recruiter dashboard - student listing, brief recruiter profile, comments, posted jobs
 - [ ] Landing page that leads to login
 - [ ] Student login checks against database, redirects to form to add new student
 - [ ] About / Marketing page
