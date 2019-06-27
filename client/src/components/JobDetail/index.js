@@ -6,10 +6,12 @@ import { deleteJob, saveJob } from '../../actions/savedJobs';
 
 const propTypes = {
   currentUser: PropTypes.object.isRequired,
+  deleteJob: PropTypes.func.isRequired,
   jobs: PropTypes.array.isRequired,
   match: PropTypes.shape({
     params: PropTypes.shape({ id: PropTypes.string.isRequired }).isRequired
-  }).isRequired
+  }).isRequired,
+  saveJob: PropTypes.func.isRequired
 };
 
 const renderJob = (currentUser, deleteJob, jobs, route, saved, saveJob) => {

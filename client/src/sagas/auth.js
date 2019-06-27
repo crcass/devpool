@@ -14,12 +14,12 @@ function* handleLogin(history, provider) {
   );
   yield put({ type: LOGIN_COMPLETE, payload });
   payload.provider === 'google.com'
-    ? history.push('/students')
-    : history.push('/dashboard');
+    ? history.push('/dashboard/students')
+    : history.push('/dashboard/jobs');
 }
 
 function* handleLogout() {
-  yield firebaseSignOut();
+  yield firebaseSignOut().then(response => response);
   yield put({ type: LOGOUT_COMPLETE });
 }
 

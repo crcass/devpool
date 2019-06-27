@@ -19,6 +19,7 @@ const renderStudents = students =>
   ));
 
 const propTypes = {
+  currentUser: PropTypes.object.isRequired,
   fetchStudents: PropTypes.func.isRequired,
   isLoaded: PropTypes.bool.isRequired,
   students: PropTypes.array.isRequired

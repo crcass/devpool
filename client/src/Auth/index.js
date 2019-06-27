@@ -13,6 +13,11 @@ export async function signIn(provider) {
   }
 }
 
-export function firebaseSignOut() {
-  return app.auth().signOut();
+export async function firebaseSignOut() {
+  try {
+    const response = await app.auth().signOut();
+    return response;
+  } catch (error) {
+    throw error;
+  }
 }

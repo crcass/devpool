@@ -6,10 +6,8 @@ import {
 } from '../actions';
 
 const initialState = {
-  savedJobs: {
-    savedJobs: [],
-    savedJobsLoaded: false
-  }
+  savedJobs: [],
+  savedJobsLoaded: false
 };
 
 export default function(state = initialState, action) {

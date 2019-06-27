@@ -3,8 +3,9 @@ import { connect } from 'react-redux';
 import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
 import Logout from '../components/Logout';
 import Login from '../components/Login';
+import Dashboard from '../components/Dashboard';
 import NotFound from '../components/NotFound';
-import PrivateRoutes from './PrivateRoutes';
+import PrivateRoute from './PrivateRoute';
 
 const Routes = ({ currentUser }) => (
   <Router>
@@ -20,7 +21,7 @@ const Routes = ({ currentUser }) => (
     </nav>
     <Switch>
       <Route exact path="/" component={Login} />
-      <PrivateRoutes currentUser={currentUser} />
+      <PrivateRoute component={Dashboard} currentUser={currentUser} />
       <Route component={NotFound} />
     </Switch>
   </Router>

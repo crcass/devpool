@@ -4,24 +4,15 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchRepos } from '../../actions/repos';
 import { resetStudent } from '../../actions/students';
-import { addComment, fetchComments } from '../../actions/comments';
 import Comments from '../Comments';
-import CommentForm from '../CommentForm';
 import Repos from '../Repos';
 import { titleCase } from '../../helpers';
 
 const propTypes = {
-  addComment: PropTypes.func.isRequired,
-  author: PropTypes.string.isRequired,
-  commentsLoaded: PropTypes.bool.isRequired,
-  fetchComments: PropTypes.func.isRequired,
-  fetchRepos: PropTypes.func.isRequired,
   match: PropTypes.shape({
     params: PropTypes.shape({ id: PropTypes.string.isRequired }).isRequired
   }).isRequired,
-  resetStudent: PropTypes.func.isRequired,
-  repos: PropTypes.array.isRequired,
-  reposLoaded: PropTypes.bool.isRequired
+  resetStudent: PropTypes.func.isRequired
 };
 
 const renderStudent = (students, route) =>
@@ -43,55 +34,24 @@ const renderStudent = (students, route) =>
       </div>
     ));
 
-const StudentDetail = ({
-  addComment,
-  author,
-  commentsLoaded,
-  fetchComments,
-  fetchRepos,
-  match,
-  resetStudent,
-  repos,
-  students,
-  reposLoaded
-}) => {
-  useEffect(() => {
-    const { id } = match.params;
-    fetchComments(id, author);
-    fetchRepos(id);
-    return () => resetStudent();
-  }, [author, match.params, fetchComments, fetchRepos, resetStudent]);
-
-  const handleSubmit = values => {
-    const user = match.params.id;
-    addComment(values, user, author);
-  };
+const StudentDetail = ({ match, resetStudent, students }) => {
+  useEffect(() => () => resetStudent(), [resetStudent]);
 
   return (
     <div>
       {renderStudent(students, match.params.id)}
-      {commentsLoaded && <Comments />}
-      {commentsLoaded && (
-        <CommentForm author={author} onSubmit={handleSubmit} />
-      )}
-      {reposLoaded && <Repos repos={repos} />}
+      <Comments id={match.params.id} />
+      <Repos id={match.params.id} />
     </div>
   );
 };
 
 const mapStateToProps = state => ({
-  author: state.auth.currentUser.uid,
-  commentsLoaded: state.comments.commentsLoaded,
-  repos: state.repos.repos,
-  reposLoaded: state.repos.reposLoaded,
   students: state.students.students
 });
 
 const mapDispatchToProps = dispatch =>
-  bindActionCreators(
-    { addComment, fetchComments, fetchRepos, resetStudent },
-    dispatch
-  );
+  bindActionCreators({ fetchRepos, resetStudent }, dispatch);
 
 StudentDetail.propTypes = propTypes;
 

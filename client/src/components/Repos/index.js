@@ -1,8 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { fetchRepos } from '../../actions/repos';
 
 const propTypes = {
-  repos: PropTypes.array.isRequired
+  fetchRepos: PropTypes.func.isRequired,
+  id: PropTypes.string.isRequired,
+  repos: PropTypes.array.isRequired,
+  reposLoaded: PropTypes.bool.isRequired
 };
 
 const renderRepos = repos => {
@@ -18,13 +24,32 @@ const renderRepos = repos => {
   ));
 };
 
-const Repos = ({ repos }) => (
-  <div>
-    <h3>Recent Projects</h3>
-    {renderRepos(repos)}
-  </div>
-);
+const Repos = ({ fetchRepos, id, repos, reposLoaded }) => {
+  useEffect(() => {
+    if (!reposLoaded) {
+      fetchRepos(id);
+    }
+  }, [fetchRepos, id, reposLoaded]);
+
+  return (
+    <div>
+      <h3>Recent Projects</h3>
+      {renderRepos(repos)}
+    </div>
+  );
+};
+
+const mapStateToProps = state => ({
+  repos: state.repos.repos,
+  reposLoaded: state.repos.reposLoaded
+});
+
+const mapDispatchToProps = dispatch =>
+  bindActionCreators({ fetchRepos }, dispatch);
 
 Repos.propTypes = propTypes;
 
-export default Repos;
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Repos);

@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 
 let CommentForm = ({ handleSubmit, pristine, submitting }) => (
@@ -23,8 +24,15 @@ let CommentForm = ({ handleSubmit, pristine, submitting }) => (
   </div>
 );
 
+const mapStateToProps = state => ({
+  // take name from database
+  initialValues: {
+    author: state.auth.currentUser.uid
+  }
+});
+
 CommentForm = reduxForm({
   form: 'comment'
 })(CommentForm);
 
-export default CommentForm;
+export default connect(mapStateToProps)(CommentForm);

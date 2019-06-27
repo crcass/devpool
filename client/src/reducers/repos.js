@@ -1,11 +1,8 @@
 import { RESET_STUDENT, LOGOUT_COMPLETE, REPOS_RECEIVED } from '../actions';
 
 const initialState = {
-  repos: {
-    repos: [],
-    reposLoaded: false
-  },
-  form: {}
+  repos: [],
+  reposLoaded: false
 };
 
 export default function(state = initialState, action) {

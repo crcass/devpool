@@ -1,8 +1,10 @@
 export const formatAuthenticatedUser = data => ({
   email: data.user.email,
+  image: data.additionalUserInfo.avatar_url || data.user.photoURL,
   name: data.user.displayName,
   provider: data.additionalUserInfo.providerId,
-  uid: data.user.uid
+  uid: data.user.uid,
+  username: data.additionalUserInfo.username
 });
 
 export const formatRepoAPIResults = data => ({

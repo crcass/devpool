@@ -36,6 +36,7 @@ let JobsForm = ({ handleSubmit, pristine, submitting }) => {
 };
 
 const mapStateToProps = state => ({
+  // take name, company, image(logo), website from database
   initialValues: {
     author: state.auth.currentUser.uid,
     company: 'good company',
