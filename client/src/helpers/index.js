@@ -1,10 +1,14 @@
-export const formatAuthenticatedUser = data => ({
-  email: data.user.email,
-  image: data.additionalUserInfo.avatar_url || data.user.photoURL,
-  name: data.user.displayName,
-  provider: data.additionalUserInfo.providerId,
-  uid: data.user.uid,
-  username: data.additionalUserInfo.username
+export const formatAuthenticatedUser = (auth, data) => ({
+  company: data.company || null,
+  email: auth.user.email,
+  image: auth.additionalUserInfo.avatar_url || auth.user.photoURL,
+  linkedin: data.linkedin || null,
+  name: auth.user.displayName || data.name,
+  portfolio: data.portfolio || null,
+  provider: auth.additionalUserInfo.providerId,
+  uid: auth.user.uid,
+  username: auth.additionalUserInfo.username || null,
+  website: data.website || null
 });
 
 export const formatRepoAPIResults = data => ({

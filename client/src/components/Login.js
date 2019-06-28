@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -23,9 +23,14 @@ const renderButtons = (history, loggedIn, loggingIn, providers, userLogin) =>
     </button>
   ));
 
-const Login = ({ history, loggedIn, loggingIn, userLogin }) => (
-  <div>{renderButtons(history, loggedIn, loggingIn, providers, userLogin)}</div>
-);
+const Login = ({ history, loggedIn, loggingIn, userLogin }) => {
+  useEffect(() => {});
+  return (
+    <div>
+      {renderButtons(history, loggedIn, loggingIn, providers, userLogin)}
+    </div>
+  );
+};
 
 const mapStateToProps = state => ({
   loggedIn: state.auth.loggedIn,

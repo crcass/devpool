@@ -3,8 +3,15 @@ const commentRoutes = require('./comments');
 const jobRoutes = require('./jobs');
 const savedJobRoutes = require('./savedJobs');
 const studentRoutes = require('./students');
+const userRoutes = require('./user');
 
-const routes = [commentRoutes, jobRoutes, savedJobRoutes, studentRoutes];
+const routes = [
+  commentRoutes,
+  jobRoutes,
+  savedJobRoutes,
+  studentRoutes,
+  userRoutes
+];
 
 router.use('/', routes);
 

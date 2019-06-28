@@ -26,3 +26,7 @@ export const RESET_STUDENT = 'RESET_STUDENT';
 export const REPOS_RECEIVED = 'REPOS_RECEIVED';
 export const FETCH_STUDENTS = 'FETCH_STUDENTS';
 export const STUDENTS_RECEIVED = 'STUDENTS_RECEIVED';
+export const FETCH_USER = 'LOAD_USER';
+export const USER_RECEIVED = 'USER_RECEIVED';
+export const ADD_USER = 'ADD_USER';
+export const USER_ADDED = 'USER_ADDED';

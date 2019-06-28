@@ -14,3 +14,5 @@ export const allStudents = '/api/students/';
 export const oneStudent = id => `/api/students/${id}`;
 export const studentRepos = id =>
   `https://api.github.com/users/${id}/repos?affiliation=owner&sort=created`;
+
+export const user = id => `/api/user/${id}`;

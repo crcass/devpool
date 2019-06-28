@@ -5,22 +5,21 @@ import Logout from '../components/Logout';
 import Login from '../components/Login';
 import Dashboard from '../components/Dashboard';
 import NotFound from '../components/NotFound';
+import ProfileDetail from '../components/ProfileDetail';
 import PrivateRoute from './PrivateRoute';
 
 const Routes = ({ currentUser }) => (
   <Router>
     <nav>
-      {currentUser && currentUser.provider === 'google.com' && (
-        <Link to="/profile/">PROFILE</Link>
-      )}
-      {currentUser && currentUser.provider === 'github.com' && (
-        <Link to="/savedJobs/">PROFILE</Link>
-      )}
+      {currentUser && <Link to="/account/">Account</Link>}
       This is a nav bar
       {currentUser && <Logout />}
     </nav>
     <Switch>
       <Route exact path="/" component={Login} />
+      {currentUser && (
+        <Route exact path="/account/" component={ProfileDetail} />
+      )}
       <PrivateRoute component={Dashboard} currentUser={currentUser} />
       <Route component={NotFound} />
     </Switch>

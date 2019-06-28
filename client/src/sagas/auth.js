@@ -6,12 +6,20 @@ import {
   USER_LOGIN
 } from '../actions';
 import { firebaseSignOut, signIn } from '../auth';
+import { getData } from '../api';
+import { oneStudent, user } from '../constants/endpoints';
 import { formatAuthenticatedUser } from '../helpers';
 
 function* handleLogin(history, provider) {
-  const payload = yield signIn(provider).then(response =>
-    formatAuthenticatedUser(response)
-  );
+  const data = yield signIn(provider).then(response => response);
+  const payload =
+    data.additionalUserInfo.providerId === 'github.com'
+      ? yield getData(oneStudent(data.additionalUserInfo.username)).then(
+          response => formatAuthenticatedUser(data, response.data)
+        )
+      : yield getData(user(data.user.uid)).then(response =>
+          formatAuthenticatedUser(data, response.data)
+        );
   yield put({ type: LOGIN_COMPLETE, payload });
   payload.provider === 'google.com'
     ? history.push('/dashboard/students')
