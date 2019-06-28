@@ -4,11 +4,11 @@ import {
   LOGOUT,
   LOGOUT_COMPLETE,
   USER_LOGIN
-} from '../actions';
-import { firebaseSignOut, signIn } from '../auth';
-import { getData } from '../api';
-import { oneStudent, user } from '../constants/endpoints';
-import { formatAuthenticatedUser } from '../helpers';
+} from '../../actions';
+import { firebaseSignOut, signIn } from '../../auth';
+import { getData } from '../../api';
+import { oneStudent, user } from '../../constants/endpoints';
+import { formatAuthenticatedUser } from '../../helpers';
 
 function* handleLogin(history, provider) {
   const data = yield signIn(provider).then(response => response);

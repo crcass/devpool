@@ -75,7 +75,7 @@ const Comments = ({
 };
 
 const mapStateToProps = state => ({
-  author: state.auth.currentUser.uid,
+  author: state.auth.currentUser.name,
   comments: state.comments.comments,
   currentUser: state.auth.currentUser,
   isLoaded: state.comments.commentsLoaded,

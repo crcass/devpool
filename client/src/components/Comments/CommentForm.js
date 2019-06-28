@@ -25,7 +25,6 @@ let CommentForm = ({ handleSubmit, pristine, submitting }) => (
 );
 
 const mapStateToProps = state => ({
-  // take name from database
   initialValues: {
     author: state.auth.currentUser.name
   }

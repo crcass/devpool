@@ -18,6 +18,15 @@ export async function postData(endpoint, data) {
   }
 }
 
+export async function putData(endpoint, data) {
+  try {
+    const response = await axios.put(endpoint, data);
+    return response;
+  } catch (error) {
+    throw error;
+  }
+}
+
 export async function deleteData(endpoint) {
   try {
     const response = await axios.delete(endpoint);

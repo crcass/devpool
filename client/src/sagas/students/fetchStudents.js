@@ -1,8 +1,8 @@
 import { all, put, takeLatest } from 'redux-saga/effects';
-import { FETCH_STUDENTS, STUDENTS_RECEIVED } from '../actions';
-import { getData } from '../api';
-import { githubProfile, allStudents } from '../constants/endpoints';
-import { formatListAPIResults } from '../helpers';
+import { FETCH_STUDENTS, STUDENTS_RECEIVED } from '../../actions';
+import { getData } from '../../api';
+import { githubProfile, allStudents } from '../../constants/endpoints';
+import { formatListAPIResults } from '../../helpers';
 
 function* fetchStudents() {
   const studentData = yield getData(allStudents).then(data => data.data);

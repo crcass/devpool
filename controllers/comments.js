@@ -3,12 +3,12 @@ const db = require('../models');
 module.exports = {
   getComments: function(req, res) {
     const { author, user } = req.params;
-    if (author === 'undefined') {
+    if (author === 'null' || author === 'undefined') {
       return db.Comments.findAll({ where: { user } }).then(data =>
         res.json(data)
       );
     }
-    if (user === 'undefined') {
+    if (user === 'null') {
       return db.Comments.findAll({ where: { author } }).then(data =>
         res.json(data)
       );

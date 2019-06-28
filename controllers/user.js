@@ -7,5 +7,12 @@ module.exports = {
   },
   createUser: function(req, res) {
     db.Users.create({ userId, name, company }).then(data => res.json(data));
+  },
+  updateUser: function(req, res) {
+    const { userId } = req.params;
+    const { company, linkedin } = req.body;
+    db.Users.update({ company, linkedin }, { where: { userId } }).then(data =>
+      res.json(data)
+    );
   }
 };

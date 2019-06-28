@@ -1,4 +1,10 @@
-import { LOGIN_COMPLETE, LOGOUT_COMPLETE, USER_LOGIN } from '../actions';
+import {
+  LOGIN_COMPLETE,
+  LOGOUT_COMPLETE,
+  STUDENT_UPDATED,
+  USER_LOGIN,
+  USER_UPDATED
+} from '../actions';
 
 const initialState = {
   currentUser: null,
@@ -16,10 +22,28 @@ export default function(state = initialState, action) {
         loggedIn: true,
         loggingIn: false
       };
-    case USER_LOGIN:
-      return { ...state, loggingIn: true };
     case LOGOUT_COMPLETE:
       return { ...state, currentUser: null, loggedIn: false };
+    case STUDENT_UPDATED:
+      return {
+        ...state,
+        currentUser: {
+          ...state.currentUser,
+          linkedin: payload.linkedin,
+          portfolio: payload.portfolio
+        }
+      };
+    case USER_LOGIN:
+      return { ...state, loggingIn: true };
+    case USER_UPDATED:
+      return {
+        ...state,
+        currentUser: {
+          ...state.currentUser,
+          company: payload.company,
+          linkedin: payload.linkedin
+        }
+      };
     default:
       return state;
   }
