@@ -3,6 +3,7 @@ import {
   LOGIN_COMPLETE,
   LOGOUT,
   LOGOUT_COMPLETE,
+  NEW_USER,
   USER_LOGIN
 } from '../../actions';
 import { firebaseSignOut, signIn } from '../../auth';
@@ -11,19 +12,23 @@ import { oneStudent, user } from '../../constants/endpoints';
 import { formatAuthenticatedUser } from '../../helpers';
 
 function* handleLogin(history, provider) {
-  const data = yield signIn(provider).then(response => response);
-  const payload =
-    data.additionalUserInfo.providerId === 'github.com'
-      ? yield getData(oneStudent(data.additionalUserInfo.username)).then(
-          response => formatAuthenticatedUser(data, response.data)
+  const auth = yield signIn(provider).then(response => response);
+  const { data } =
+    auth.additionalUserInfo.providerId === 'github.com'
+      ? yield getData(oneStudent(auth.additionalUserInfo.username)).then(
+          response => response
         )
-      : yield getData(user(data.user.uid)).then(response =>
-          formatAuthenticatedUser(data, response.data)
-        );
-  yield put({ type: LOGIN_COMPLETE, payload });
-  payload.provider === 'google.com'
-    ? history.push('/dashboard/students')
-    : history.push('/dashboard/jobs');
+      : yield getData(user(auth.user.uid)).then(response => response);
+  if (data === null) {
+    yield put({ type: NEW_USER, payload: auth });
+    history.push('/adduser/');
+  } else {
+    const payload = formatAuthenticatedUser(auth, data);
+    yield put({ type: LOGIN_COMPLETE, payload });
+    payload.provider === 'google.com'
+      ? history.push('/dashboard/students')
+      : history.push('/dashboard/jobs');
+  }
 }
 
 function* handleLogout() {

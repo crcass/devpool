@@ -2,6 +2,8 @@ import {
   LOGIN_COMPLETE,
   LOGOUT_COMPLETE,
   STUDENT_UPDATED,
+  NEW_USER,
+  USER_ADDED,
   USER_LOGIN,
   USER_UPDATED
 } from '../actions';
@@ -23,7 +25,19 @@ export default function(state = initialState, action) {
         loggingIn: false
       };
     case LOGOUT_COMPLETE:
-      return { ...state, currentUser: null, loggedIn: false };
+      return { ...state, ...initialState };
+    case NEW_USER:
+      return {
+        ...state,
+        currentUser: {
+          email: payload.user.email,
+          image: payload.additionalUserInfo.avatar_url || payload.user.photoURL,
+          name: payload.user.displayName || null,
+          provider: payload.additionalUserInfo.providerId,
+          uid: payload.user.uid,
+          username: payload.additionalUserInfo.username || null
+        }
+      };
     case STUDENT_UPDATED:
       return {
         ...state,
@@ -31,6 +45,17 @@ export default function(state = initialState, action) {
           ...state.currentUser,
           linkedin: payload.linkedin,
           portfolio: payload.portfolio
+        }
+      };
+    case USER_ADDED:
+      return {
+        ...state,
+        currentUser: {
+          ...state.currentUser,
+          company: payload.company,
+          linkedin: payload.linkedin,
+          name: payload.name,
+          website: payload.website
         }
       };
     case USER_LOGIN:

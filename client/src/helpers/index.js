@@ -2,7 +2,7 @@ export const formatAuthenticatedUser = (auth, data) => ({
   company: data.company || null,
   email: auth.user.email,
   image: auth.additionalUserInfo.avatar_url || auth.user.photoURL,
-  linkedin: data.linkedin,
+  linkedin: data.linkedin || null,
   name: auth.user.displayName || data.name,
   portfolio: data.portfolio || null,
   provider: auth.additionalUserInfo.providerId,

@@ -19,7 +19,8 @@ This project is currently in active development. This readme will be updated as 
 - [x] Student dashboard - jobs listing, brief student profile, comments, saved jobs
 - [x] Recruiter dashboard - student listing, brief recruiter profile, comments, posted jobs
 - [x] Account page - users on either side of the app can update select information stored in the database
-- [ ] Landing page that leads to login
+- [x] Landing page that leads to login
+- [x] Recruiter login checks against database, redirects to form to add new user
 - [ ] Student login checks against database, redirects to form to add new student
 - [ ] About / Marketing page
 - [ ] Header Nav / Footer

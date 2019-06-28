@@ -2,8 +2,8 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { userLogin } from '../actions/auth';
-import providers from '../auth/providers';
+import { userLogin } from '../../actions/auth';
+import providers from '../../auth/providers';
 
 const propTypes = {
   history: PropTypes.object.isRequired,
@@ -14,13 +14,16 @@ const propTypes = {
 
 const renderButtons = (history, loggedIn, loggingIn, providers, userLogin) =>
   providers.map(provider => (
-    <button
-      key={provider.name}
-      disabled={loggingIn || loggedIn}
-      onClick={() => userLogin(history, provider.method)}
-    >
-      Sign In with {provider.name}
-    </button>
+    <div key={provider.name}>
+      <h3>{provider.title}</h3>
+      <p>{provider.text}</p>
+      <button
+        disabled={loggingIn || loggedIn}
+        onClick={() => userLogin(history, provider.method)}
+      >
+        Sign In with {provider.name}
+      </button>
+    </div>
   ));
 
 const Login = ({ history, loggedIn, loggingIn, userLogin }) => {

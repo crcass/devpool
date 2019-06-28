@@ -1,4 +1,6 @@
-import { FETCH_STUDENTS, RESET_STUDENT, UPDATE_STUDENT } from '.';
+import { ADD_STUDENT, FETCH_STUDENTS, RESET_STUDENT, UPDATE_STUDENT } from '.';
+
+export const addStudent = payload => ({ type: ADD_STUDENT, payload });
 
 export const fetchStudents = () => ({ type: FETCH_STUDENTS });
 

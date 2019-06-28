@@ -12,9 +12,8 @@ const propTypes = {
 };
 
 const ProfileDetail = ({ currentUser, updateStudent, updateUser }) => {
-  const handleSubmit = values => {
+  const handleSubmit = values =>
     values.github ? updateStudent(values) : updateUser(values);
-  };
 
   return (
     <div>

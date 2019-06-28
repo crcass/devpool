@@ -1,10 +1,13 @@
+export const ADD_STUDENT = 'ADD_STUDENT';
 export const LOGIN_COMPLETE = 'LOGIN_COMPLETE';
 export const LOGOUT = 'LOGOUT';
 export const LOGOUT_COMPLETE = 'LOGOUT_COMPLETE';
-export const USER_LOGIN = 'USER_LOGIN';
+export const NEW_USER = 'NEW_USER';
+export const STUDENT_ADDED = 'STUDENT_ADDED';
 export const STUDENT_UPDATED = 'STUDENT_UPDATED';
 export const UPDATE_STUDENT = 'UPDATE_STUDENT';
 export const UPDATE_USER = 'UPDATE_USER';
+export const USER_LOGIN = 'USER_LOGIN';
 export const USER_UPDATED = 'USER_UPDATED';
 
 export const ADD_COMMENT = 'ADD_COMMENT';

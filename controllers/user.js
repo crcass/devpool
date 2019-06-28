@@ -6,7 +6,11 @@ module.exports = {
     db.Users.findOne({ where: { userId } }).then(data => res.json(data));
   },
   createUser: function(req, res) {
-    db.Users.create({ userId, name, company }).then(data => res.json(data));
+    const { userId } = req.params;
+    const { name, company, linkedin, website } = req.body;
+    db.Users.create({ userId, name, company, linkedin, website }).then(data =>
+      res.json(data)
+    );
   },
   updateUser: function(req, res) {
     const { userId } = req.params;
