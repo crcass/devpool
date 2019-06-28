@@ -35,3 +35,13 @@ export const titleCase = str =>
     .split(' ')
     .map(word => word.charAt(0).toUpperCase() + word.slice(1))
     .join(' ');
+
+export const isSaved = (arr, obj) => {
+  let saved = false;
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i].jobId === obj.id) {
+      saved = true;
+      return saved;
+    }
+  }
+};

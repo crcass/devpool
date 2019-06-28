@@ -34,7 +34,6 @@ module.exports = {
   },
   deleteJob: function(req, res) {
     const { id } = req.params;
-    console.log(id);
-    // db.Jobs.destroy({ where: { id } }).then(data => res.json(data));
+    db.Jobs.destroy({ where: { id } }).then(data => res.json(data));
   }
 };

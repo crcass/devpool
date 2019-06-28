@@ -7,26 +7,28 @@ import providers from '../auth/providers';
 
 const propTypes = {
   history: PropTypes.object.isRequired,
+  loggedIn: PropTypes.bool.isRequired,
   loggingIn: PropTypes.bool.isRequired,
   userLogin: PropTypes.func.isRequired
 };
 
-const renderButtons = (history, loggingIn, providers, userLogin) =>
+const renderButtons = (history, loggedIn, loggingIn, providers, userLogin) =>
   providers.map(provider => (
     <button
       key={provider.name}
-      disabled={loggingIn}
+      disabled={loggingIn || loggedIn}
       onClick={() => userLogin(history, provider.method)}
     >
       Sign In with {provider.name}
     </button>
   ));
 
-const Login = ({ history, loggingIn, userLogin }) => (
-  <div>{renderButtons(history, loggingIn, providers, userLogin)}</div>
+const Login = ({ history, loggedIn, loggingIn, userLogin }) => (
+  <div>{renderButtons(history, loggedIn, loggingIn, providers, userLogin)}</div>
 );
 
 const mapStateToProps = state => ({
+  loggedIn: state.auth.loggedIn,
   loggingIn: state.auth.loggingIn
 });
 

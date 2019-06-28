@@ -2,66 +2,87 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { deleteJob, saveJob } from '../../actions/savedJobs';
+import { removeJob } from '../../actions/jobs';
+import { saveJob } from '../../actions/savedJobs';
+import { isSaved } from '../../helpers';
 
 const propTypes = {
   currentUser: PropTypes.object.isRequired,
-  deleteJob: PropTypes.func.isRequired,
   jobs: PropTypes.array.isRequired,
   match: PropTypes.shape({
     params: PropTypes.shape({ id: PropTypes.string.isRequired }).isRequired
   }).isRequired,
+  removeJob: PropTypes.func.isRequired,
   saveJob: PropTypes.func.isRequired
 };
 
-const renderJob = (currentUser, deleteJob, jobs, route, saved, saveJob) => {
-  return jobs
+const renderJob = (currentUser, jobs, removeJob, route, saveJob, savedJobs) =>
+  jobs
     .filter(job => job.id === parseInt(route))
-    .map(job => (
-      <div key={job.id}>
-        <h2>{job.title}</h2>
-        <h3>{job.company}</h3>
-        <a
-          href={job.website}
-          target="_blank"
-          rel="noopener noreferrer"
-        >{`Visit ${job.company}'s Website`}</a>
-        <img src={job.image} alt={job.company} />
-        <p>{job.description}</p>
-        {currentUser.provider === 'github.com' && (
-          <a href={job.link} target="_blank" rel="noopener noreferrer">
-            Apply for this job
-          </a>
-        )}
-        {currentUser.provider === 'github.com' && (
-          <button
-            onClick={
-              !saved
-                ? () => saveJob(job.id, currentUser.uid, job)
-                : () => deleteJob(job.id)
-            }
-          >
-            {!saved ? 'Save this Job' : String.fromCharCode(215)}
-          </button>
-        )}
-      </div>
-    ));
-};
+    .map(job => {
+      const saved = isSaved(savedJobs, job);
+      return (
+        <div key={job.id}>
+          <h2>{job.title}</h2>
+          <h3>{job.company}</h3>
+          <a
+            href={job.website}
+            target="_blank"
+            rel="noopener noreferrer"
+          >{`Visit ${job.company}'s Website`}</a>
+          <img src={job.image} alt={job.company} />
+          <p>{job.description}</p>
+          {currentUser.provider === 'github.com' && (
+            <a href={job.link} target="_blank" rel="noopener noreferrer">
+              Apply for this job
+            </a>
+          )}
+          {currentUser.provider === 'github.com' && (
+            <button
+              disabled={saved}
+              onClick={() => saveJob(job.id, currentUser.uid, job)}
+            >
+              {!saved ? 'Save this Job' : 'Saved'}
+            </button>
+          )}
+          {currentUser.provider === 'google.com' && (
+            <button onClick={() => removeJob(job.id, jobs.indexOf(job))}>
+              Delete This Job Posting
+            </button>
+          )}
+        </div>
+      );
+    });
 
-const JobDetail = ({ currentUser, deleteJob, jobs, match, saved, saveJob }) => (
+const JobDetail = ({
+  currentUser,
+  jobs,
+  match,
+  removeJob,
+  saveJob,
+  savedJobs
+}) => (
   <div>
     <h1>Job Details</h1>
-    {renderJob(currentUser, deleteJob, jobs, match.params.id, saved, saveJob)}
+    {renderJob(
+      currentUser,
+      jobs,
+      removeJob,
+      match.params.id,
+      saveJob,
+      savedJobs
+    )}
   </div>
 );
 
 const mapStateToProps = state => ({
   currentUser: state.auth.currentUser,
-  jobs: state.jobs.jobs
+  jobs: state.jobs.jobs,
+  savedJobs: state.savedJobs.savedJobs
 });
 
 const mapDispatchToProps = dispatch =>
-  bindActionCreators({ deleteJob, saveJob }, dispatch);
+  bindActionCreators({ removeJob, saveJob }, dispatch);
 
 JobDetail.propTypes = propTypes;
 

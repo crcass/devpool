@@ -7,5 +7,10 @@ module.exports = {
   getStudent: function(req, res) {
     const { github } = req.params;
     db.Students.findOne({ where: { github } }).then(data => res.json(data));
+  },
+  createStudent: function(req, res) {
+    db.Studets.create({ name, github, linkedin, portfolio }).then(data =>
+      res.json(data)
+    );
   }
 };
