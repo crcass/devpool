@@ -6,6 +6,7 @@ router.route('/students/').get(studentsController.getStudents);
 router
   .route('/students/:github')
   .get(studentsController.getStudent)
+  .post(studentsController.createStudent)
   .put(studentsController.updateStudent);
 
 module.exports = router;

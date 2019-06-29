@@ -8,9 +8,7 @@ function* addUser(data, history) {
   const payload = { company, linkedin, name, website };
   yield postData(user(uid), data).then(response => response.data);
   yield put({ type: USER_ADDED, payload });
-  data.provider === 'google.com'
-    ? history.push('/dashboard/students')
-    : history.push('/dashboard/jobs');
+  history.push('/dashboard/students');
 }
 
 export default function* actionWatcher() {

@@ -1,6 +1,7 @@
 import {
   LOGIN_COMPLETE,
   LOGOUT_COMPLETE,
+  STUDENT_ADDED,
   STUDENT_UPDATED,
   NEW_USER,
   USER_ADDED,
@@ -36,6 +37,16 @@ export default function(state = initialState, action) {
           provider: payload.additionalUserInfo.providerId,
           uid: payload.user.uid,
           username: payload.additionalUserInfo.username || null
+        }
+      };
+    case STUDENT_ADDED:
+      return {
+        ...state,
+        currentUser: {
+          ...state.currentUser,
+          linkedin: payload.linkedin,
+          name: payload.name,
+          portfolio: payload.portfolio
         }
       };
     case STUDENT_UPDATED:

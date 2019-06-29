@@ -2,26 +2,40 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 
-let AddUserForm = ({ handleSubmit, pristine, submitting }) => (
+let AddUserForm = ({ handleSubmit, initialValues, pristine, submitting }) => (
   <div>
     <form onSubmit={handleSubmit}>
-      <label htmlFor="company">Current Employer</label>
-      <Field name="company" component="input" type="text" />
-      <label htmlFor="website">Company Website</label>
-      <Field
-        name="website"
-        component="input"
-        type="url"
-        placeholder="must start with https://"
-      />
+      {initialValues.provider === 'google.com' && (
+        <>
+          <label htmlFor="company">Current Employer</label>
+          <Field name="company" component="input" type="text" />
+          <label htmlFor="website">Company Website</label>
+          <Field
+            name="website"
+            component="input"
+            type="url"
+            placeholder="must start with https://"
+          />
+        </>
+      )}
       <label htmlFor="linkedin">LinkedIn Page</label>
-
       <Field
         name="linkedin"
         component="input"
         type="url"
         placeholder="must start with https://"
       />
+      {initialValues.provider === 'github.com' && (
+        <>
+          <label htmlFor="portfolio">Portfolio Link</label>
+          <Field
+            name="portfolio"
+            component="input"
+            type="url"
+            placeholder="must start with https://"
+          />
+        </>
+      )}
       <button disabled={pristine || submitting}>Submit</button>
     </form>
   </div>

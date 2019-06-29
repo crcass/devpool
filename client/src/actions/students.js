@@ -1,6 +1,10 @@
 import { ADD_STUDENT, FETCH_STUDENTS, RESET_STUDENT, UPDATE_STUDENT } from '.';
 
-export const addStudent = payload => ({ type: ADD_STUDENT, payload });
+export const addStudent = (payload, history) => ({
+  type: ADD_STUDENT,
+  payload,
+  history
+});
 
 export const fetchStudents = () => ({ type: FETCH_STUDENTS });
 
