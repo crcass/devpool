@@ -22,8 +22,8 @@ This project is currently in active development. This readme will be updated as 
 - [x] Landing page that leads to login
 - [x] Recruiter login checks against database, redirects to form to add new user
 - [x] Student login checks against database, redirects to form to add new student
-- [ ] About / Marketing page
-- [ ] Header Nav / Footer
+- [x] About / Marketing page
+- [x] Header Nav / Footer
 - [ ] Styling
 
 ## Technology
