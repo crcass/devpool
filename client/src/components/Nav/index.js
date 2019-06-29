@@ -9,9 +9,10 @@ const propTypes = {
 
 const Nav = ({ currentUser }) => (
   <nav>
+    This is a nav bar
+    {!currentUser && <Link to="/login/">Login</Link>}
     {currentUser && <Link to="/dashboard/">Dashboard</Link>}
     {currentUser && <Link to="/account/">Account</Link>}
-    This is a nav bar
     {currentUser && <Logout />}
   </nav>
 );
