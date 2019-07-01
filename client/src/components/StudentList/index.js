@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 import { fetchStudents } from '../../actions/students';
 import Student from '../Student';
 import Container from '../../shared/Container';
+import FlexContainer from '../../shared/FlexContainer';
 
 const renderStudents = students =>
   students.map(student => (
@@ -41,7 +42,7 @@ const StudentList = ({ currentUser, fetchStudents, isLoaded, students }) => {
     <section>
       <Container>
         <h1>Students</h1>
-        {renderStudents(students)}
+        <FlexContainer>{renderStudents(students)}</FlexContainer>
       </Container>
     </section>
   );

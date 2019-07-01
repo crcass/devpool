@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 import Job from '../Job';
 import JobsForm from '../JobsForm';
 import Container from '../../shared/Container';
+import FlexContainer from '../../shared/FlexContainer';
 import { addJob, fetchJobs } from '../../actions/jobs';
 
 const propTypes = {
@@ -58,11 +59,13 @@ const JobsList = ({
     <section>
       <Container>
         <h1>Jobs</h1>
-        {renderJobs(jobs)}
-        {provider === 'google.com' &&
-          location.pathname !== '/dashboard/jobs' && (
-            <JobsForm currentUser={currentUser} onSubmit={handleSubmit} />
-          )}
+        <FlexContainer>
+          {renderJobs(jobs)}
+          {provider === 'google.com' &&
+            location.pathname !== '/dashboard/jobs' && (
+              <JobsForm currentUser={currentUser} onSubmit={handleSubmit} />
+            )}
+        </FlexContainer>
       </Container>
     </section>
   );
