@@ -24,7 +24,7 @@ This project is currently in active development. This readme will be updated as 
 - [x] Student login checks against database, redirects to form to add new student
 - [x] About / Marketing page
 - [x] Header Nav / Footer
-- [ ] Styling
+- [x] Styling
 
 ## Technology
 
@@ -37,5 +37,13 @@ A website that provides a place for recruiters to see students enrolled in a cod
 ## Motivation
 
 This project was an exercise to build a larger-scale, full-stack React website. I wanted to use this as an opportunity to become more familiar with libraries and tools that are being used in modern React apps.
+
+## Known Issues
+
+- Auth state does not persist on refresh.
+- Error messages are not handled
+- Styling needs to be refined.
+
+Please report as you find more issues!
 
 ♥︎ cc
