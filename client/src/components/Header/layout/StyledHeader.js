@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const StyledHeader = styled.header`
   align-items: center;
   background: ${props => (props.auth.loggedIn ? '#000' : null)};
-  color: ${props => (props.auth.loggedIn ? '#fff' : '#f3f3f3')};
+  color: #f3f3f3;
   display: flex;
   justify-content: space-between;
   height: 2.75em;

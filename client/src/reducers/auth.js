@@ -47,7 +47,8 @@ export default function(state = initialState, action) {
           linkedin: payload.linkedin,
           name: payload.name,
           portfolio: payload.portfolio
-        }
+        },
+        loggedIn: true
       };
     case STUDENT_UPDATED:
       return {

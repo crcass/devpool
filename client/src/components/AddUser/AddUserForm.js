@@ -1,9 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
+import FormWrap from '../../shared/FormWrap';
 
 let AddUserForm = ({ handleSubmit, initialValues, pristine, submitting }) => (
-  <div>
+  <FormWrap>
     <form onSubmit={handleSubmit}>
       {initialValues.provider === 'google.com' && (
         <>
@@ -38,7 +39,7 @@ let AddUserForm = ({ handleSubmit, initialValues, pristine, submitting }) => (
       )}
       <button disabled={pristine || submitting}>Submit</button>
     </form>
-  </div>
+  </FormWrap>
 );
 
 const mapStateToProps = state => ({
