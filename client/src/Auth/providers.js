@@ -6,16 +6,16 @@ const githubAuth = new firebase.auth.GithubAuthProvider();
 
 const providers = [
   {
-    name: 'Github',
-    method: githubAuth,
-    title: 'Students',
-    text: 'Login with your GitHub account.'
-  },
-  {
     name: 'Google',
     method: googleAuth,
     title: 'Recruiters',
     text: 'Login with your Google account.'
+  },
+  {
+    name: 'Github',
+    method: githubAuth,
+    title: 'Students',
+    text: 'Login with your GitHub account'
   }
 ];
 

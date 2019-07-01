@@ -7,6 +7,8 @@ import { resetStudent } from '../../actions/students';
 import Comments from '../Comments';
 import Repos from '../Repos';
 import { titleCase } from '../../helpers';
+import PersonContainer from '../../shared/PersonContainer';
+import StudentLinks from '../../shared/StudentLinks';
 
 const propTypes = {
   match: PropTypes.shape({
@@ -19,19 +21,15 @@ const renderStudent = (students, route) =>
   students
     .filter(student => student.github === route)
     .map(student => (
-      <div key={student.github}>
+      <PersonContainer key={student.github}>
         <h2>{titleCase(student.name)}</h2>
         <img src={student.image} alt={student.name} />
-        <a href={student.githubLink} target="_blank" rel="noopener noreferrer">
-          Github
-        </a>
-        <a href={student.linkedin} target="_blank" rel="noopener noreferrer">
-          LinkedIn
-        </a>
-        <a href={student.portfolio} target="_blank" rel="noopener noreferrer">
-          Portfolio
-        </a>
-      </div>
+        <StudentLinks
+          githubLink={student.githubLink}
+          linkedin={student.linkedin}
+          portfolio={student.portfolio}
+        />
+      </PersonContainer>
     ));
 
 const StudentDetail = ({ match, resetStudent, students }) => {

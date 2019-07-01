@@ -39,6 +39,7 @@ export const STUDENTS_RECEIVED = 'STUDENTS_RECEIVED';
 
 export const ADD_USER = 'ADD_USER';
 export const FETCH_USER = 'LOAD_USER';
-export const TOGGLE_FORM = 'TOGGLE_FORM';
 export const USER_ADDED = 'USER_ADDED';
 export const USER_RECEIVED = 'USER_RECEIVED';
+
+export const TOGGLE_MENU = 'TOGGLE_MENU';

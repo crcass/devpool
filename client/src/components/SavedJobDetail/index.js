@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { deleteJob } from '../../actions/savedJobs';
+import PersonContainer from '../../shared/PersonContainer';
 
 const propTypes = {
   deleteJob: PropTypes.func.isRequired,
@@ -17,7 +18,7 @@ const renderJob = (deleteJob, jobs, route) => {
     .filter(job => job.jobId === parseInt(route))
     .map(job => {
       return (
-        <div key={job.id}>
+        <PersonContainer key={job.id}>
           <h2>{job.title}</h2>
           <h3>{job.company}</h3>
           <a
@@ -33,16 +34,13 @@ const renderJob = (deleteJob, jobs, route) => {
           <button onClick={() => deleteJob(job.jobId, jobs.indexOf(job))}>
             Remove from Saved
           </button>
-        </div>
+        </PersonContainer>
       );
     });
 };
 
 const JobDetail = ({ deleteJob, savedJobs, match }) => (
-  <div>
-    <h1>Job Details</h1>
-    {renderJob(deleteJob, savedJobs, match.params.id)}
-  </div>
+  <div>{renderJob(deleteJob, savedJobs, match.params.id)}</div>
 );
 
 const mapStateToProps = state => ({

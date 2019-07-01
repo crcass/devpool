@@ -2,12 +2,15 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { withRouter } from 'react-router-dom';
 import CommentForm from './CommentForm';
 import {
   addComment,
   fetchComments,
   removeComment
 } from '../../actions/comments';
+import CommentContainer from './layout/CommentContainer';
+import Container from '../../shared/Container';
 
 const propTypes = {
   addComment: PropTypes.func.isRequired,
@@ -23,15 +26,15 @@ const propTypes = {
 
 const renderComments = (comments, removeComment) =>
   comments.map((comment, i) => (
-    <div key={comment.id}>
+    <CommentContainer key={comment.id}>
       <p>{comment.comment}</p>
       {comment.link !== null && (
         <a href={comment.link} target="_blank" rel="noopener noreferrer">
-          Click
+          Link
         </a>
       )}
       <button onClick={() => removeComment(comment.id, i)}>&times;</button>
-    </div>
+    </CommentContainer>
   ));
 
 const Comments = ({
@@ -42,6 +45,7 @@ const Comments = ({
   fetchComments,
   id,
   isLoaded,
+  location,
   removeComment,
   user
 }) => {
@@ -64,13 +68,16 @@ const Comments = ({
   };
 
   return (
-    <div>
-      <h3>Comments</h3>
-      {renderComments(comments, removeComment)}
-      {currentUser.provider === 'google.com' && (
-        <CommentForm currentUser={currentUser} onSubmit={handleSubmit} />
-      )}
-    </div>
+    <section>
+      <Container>
+        <h1>Comments</h1>
+        {renderComments(comments, removeComment)}
+        {currentUser.provider === 'google.com' &&
+          location.pathname !== '/dashboard/comments/' && (
+            <CommentForm currentUser={currentUser} onSubmit={handleSubmit} />
+          )}
+      </Container>
+    </section>
   );
 };
 
@@ -90,4 +97,4 @@ Comments.propTypes = propTypes;
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Comments);
+)(withRouter(Comments));

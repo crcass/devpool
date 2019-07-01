@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchRepos } from '../../actions/repos';
+import Container from '../../shared/Container';
+import PersonContainer from '../../shared/PersonContainer';
+import RepoContainer from './layout/RepoContainer';
 
 const propTypes = {
   fetchRepos: PropTypes.func.isRequired,
@@ -13,14 +16,15 @@ const propTypes = {
 
 const renderRepos = repos => {
   return repos.map(repo => (
-    <div key={repo.id}>
-      <p>{repo.name}</p>
-      <p>{repo.language}</p>
-      {repo.description !== null && <p>{repo.description}</p>}
-      <a href={repo.url} target="_blank" rel="noopener noreferrer">
-        View Repo on Github
-      </a>
-    </div>
+    <PersonContainer key={repo.id}>
+      <RepoContainer>
+        <h3>{repo.name}</h3>
+        {repo.description !== null && <p>{repo.description}</p>}
+        <a href={repo.url} target="_blank" rel="noopener noreferrer">
+          View Repo on Github
+        </a>
+      </RepoContainer>
+    </PersonContainer>
   ));
 };
 
@@ -32,10 +36,10 @@ const Repos = ({ fetchRepos, id, repos, reposLoaded }) => {
   }, [fetchRepos, id, reposLoaded]);
 
   return (
-    <div>
-      <h3>Recent Projects</h3>
+    <Container>
+      <h2>Recent Projects</h2>
       {renderRepos(repos)}
-    </div>
+    </Container>
   );
 };
 

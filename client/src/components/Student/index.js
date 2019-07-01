@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import PersonContainer from '../../shared/PersonContainer';
+import StudentLinks from '../../shared/StudentLinks';
 import { titleCase } from '../../helpers';
 
 const propTypes = {
@@ -13,23 +15,17 @@ const propTypes = {
 };
 
 const Student = ({ github, githubLink, linkedin, image, name, portfolio }) => (
-  <div>
+  <PersonContainer>
     <Link to={`/students/${github}`}>
       <h2>{titleCase(name)}</h2>
       <img src={image} alt={name} />
     </Link>
-    <div>
-      <a href={githubLink} target="_blank" rel="noopener noreferrer">
-        Github
-      </a>
-      <a href={linkedin} target="_blank" rel="noopener noreferrer">
-        LinkedIn
-      </a>
-      <a href={portfolio} target="_blank" rel="noopener noreferrer">
-        Portfolio
-      </a>
-    </div>
-  </div>
+    <StudentLinks
+      githubLink={githubLink}
+      linkedin={linkedin}
+      portfolio={portfolio}
+    />
+  </PersonContainer>
 );
 
 Student.propTypes = propTypes;

@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import About from '../components/About';
 import AddUser from '../components/AddUser';
 import Dashboard from '../components/Dashboard';
-import Footer from '../components/Footer';
 import Header from '../components/Header';
 import Home from '../components/Home';
 import Login from '../components/Login';
@@ -12,9 +11,9 @@ import NotFound from '../components/NotFound';
 import ProfileDetail from '../components/ProfileDetail';
 import PrivateRoute from './PrivateRoute';
 
-const Routes = ({ currentUser, loggedIn }) => (
+const Routes = ({ auth, currentUser, loggedIn }) => (
   <Router>
-    <Header currentUser={currentUser} />
+    <Header auth={auth} />
     <Switch>
       <Route exact path="/" component={Home} />
       <Route exact path="/about/" component={About} />
@@ -28,11 +27,12 @@ const Routes = ({ currentUser, loggedIn }) => (
       <PrivateRoute component={Dashboard} currentUser={currentUser} />
       <Route component={NotFound} />
     </Switch>
-    <Footer currentUser={currentUser} />
+    {/* <Footer auth={auth} currentUser={currentUser} /> */}
   </Router>
 );
 
 const mapStateToProps = state => ({
+  auth: state.auth,
   currentUser: state.auth.currentUser,
   loggedIn: state.auth.loggedIn
 });

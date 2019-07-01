@@ -1,27 +1,20 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
+import FormWrap from '../../shared/FormWrap';
 
 let CommentForm = ({ handleSubmit, pristine, submitting }) => (
-  <div>
+  <FormWrap>
     <form onSubmit={handleSubmit}>
-      <Field
-        name="comment"
-        component="input"
-        type="text"
-        placeholder="add a comment"
-      />
-      <Field
-        name="link"
-        component="input"
-        type="url"
-        placeholder="link (optional)"
-      />
+      <label htmlFor="comment">Add a comment</label>
+      <Field name="comment" component="input" type="text" />
+      <label htmlFor="link">Link (optional)</label>
+      <Field name="link" component="input" type="url" />
       <button type="submit" disabled={pristine || submitting}>
         Submit
       </button>
     </form>
-  </div>
+  </FormWrap>
 );
 
 const mapStateToProps = state => ({

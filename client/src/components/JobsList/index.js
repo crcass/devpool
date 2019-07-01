@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Job from '../Job';
 import JobsForm from '../JobsForm';
+import Container from '../../shared/Container';
 import { addJob, fetchJobs } from '../../actions/jobs';
 
 const propTypes = {
@@ -34,7 +35,14 @@ const renderJobs = jobs =>
     />
   ));
 
-const JobsList = ({ addJob, currentUser, fetchJobs, isLoaded, jobs }) => {
+const JobsList = ({
+  addJob,
+  currentUser,
+  fetchJobs,
+  isLoaded,
+  jobs,
+  location
+}) => {
   useEffect(() => {
     if (!isLoaded) {
       currentUser.provider === 'google.com'
@@ -47,13 +55,16 @@ const JobsList = ({ addJob, currentUser, fetchJobs, isLoaded, jobs }) => {
   const { provider } = currentUser;
 
   return (
-    <div>
-      <h1>Jobs List</h1>
-      {renderJobs(jobs)}
-      {provider === 'google.com' && (
-        <JobsForm currentUser={currentUser} onSubmit={handleSubmit} />
-      )}
-    </div>
+    <section>
+      <Container>
+        <h1>Jobs</h1>
+        {renderJobs(jobs)}
+        {provider === 'google.com' &&
+          location.pathname !== '/dashboard/jobs' && (
+            <JobsForm currentUser={currentUser} onSubmit={handleSubmit} />
+          )}
+      </Container>
+    </section>
   );
 };
 

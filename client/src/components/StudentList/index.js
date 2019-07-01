@@ -1,9 +1,10 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchStudents } from '../../actions/students';
 import Student from '../Student';
+import Container from '../../shared/Container';
 
 const renderStudents = students =>
   students.map(student => (
@@ -37,10 +38,12 @@ const StudentList = ({ currentUser, fetchStudents, isLoaded, students }) => {
   }
 
   return (
-    <Fragment>
-      <h1>Student List</h1>
-      {renderStudents(students)}
-    </Fragment>
+    <section>
+      <Container>
+        <h1>Students</h1>
+        {renderStudents(students)}
+      </Container>
+    </section>
   );
 };
 

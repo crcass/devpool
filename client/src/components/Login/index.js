@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import Main from '../../shared/Main';
+import Hero from '../../shared/Hero';
 import { userLogin } from '../../actions/auth';
 import providers from '../../auth/providers';
 
@@ -29,9 +31,11 @@ const renderButtons = (history, loggedIn, loggingIn, providers, userLogin) =>
 const Login = ({ history, loggedIn, loggingIn, userLogin }) => {
   useEffect(() => {});
   return (
-    <div>
-      {renderButtons(history, loggedIn, loggingIn, providers, userLogin)}
-    </div>
+    <Main>
+      <Hero>
+        {renderButtons(history, loggedIn, loggingIn, providers, userLogin)}
+      </Hero>
+    </Main>
   );
 };
 

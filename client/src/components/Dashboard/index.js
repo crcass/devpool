@@ -2,9 +2,9 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Link } from 'react-router-dom';
-import Profile from '../Profile';
 import PrivateRoute from '../../Routes/PrivateRoute';
+import Main from '../../shared/Main';
+import SubNav from './layout/SubNav';
 import { recruiterRoutes, studentRoutes } from '../../constants/routes';
 import {
   addComment,
@@ -57,6 +57,7 @@ const Dashboard = ({
   fetchStudents,
   jobs,
   jobsLoaded,
+  loggedIn,
   savedJobs,
   savedJobsLoaded,
   studentsLoaded,
@@ -91,29 +92,18 @@ const Dashboard = ({
   }, [currentUser.provider, currentUser.uid, fetchSavedJobs, savedJobsLoaded]);
 
   return (
-    <div>
-      <h1>Dashboard</h1>
-      <h4>
-        <Link to="/dashboard/jobs">{jobs.length} Jobs</Link>
-      </h4>
-      <h4>
-        <Link to="/dashboard/comments/">{comments.length} Comments</Link>
-      </h4>
-      {currentUser.provider === 'github.com' && (
-        <h4>
-          <Link to="/dashboard/savedJobs/">{savedJobs.length} Saved Jobs</Link>
-        </h4>
-      )}
-      {currentUser.provider === 'google.com' && (
-        <h4>
-          <Link to="/dashboard/students">View Students</Link>
-        </h4>
-      )}
-      <Profile image={currentUser.image} name={currentUser.name} />
+    <Main loggedIn={loggedIn}>
+      <SubNav
+        comments={comments}
+        currentUser={currentUser}
+        jobs={jobs}
+        savedJobs={savedJobs}
+      />
+      {/* <Profile image={currentUser.image} name={currentUser.name} /> */}
       {currentUser.provider === 'google.com'
         ? renderRoutes(currentUser, recruiterRoutes)
         : renderRoutes(currentUser, studentRoutes)}
-    </div>
+    </Main>
   );
 };
 
@@ -124,6 +114,7 @@ const mapStateToProps = state => ({
   currentUser: state.auth.currentUser,
   jobs: state.jobs.jobs,
   jobsLoaded: state.jobs.jobsLoaded,
+  loggedIn: state.auth.loggedIn,
   savedJobs: state.savedJobs.savedJobs,
   savedJobsLoaded: state.savedJobs.savedJobsLoaded,
   students: state.students.students,

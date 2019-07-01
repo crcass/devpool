@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 import { removeJob } from '../../actions/jobs';
 import { saveJob } from '../../actions/savedJobs';
 import { isSaved } from '../../helpers';
+import PersonContainer from '../../shared/PersonContainer';
 
 const propTypes = {
   currentUser: PropTypes.object.isRequired,
@@ -22,7 +23,7 @@ const renderJob = (currentUser, jobs, removeJob, route, saveJob, savedJobs) =>
     .map(job => {
       const saved = isSaved(savedJobs, job);
       return (
-        <div key={job.id}>
+        <PersonContainer key={job.id}>
           <h2>{job.title}</h2>
           <h3>{job.company}</h3>
           <a
@@ -50,7 +51,7 @@ const renderJob = (currentUser, jobs, removeJob, route, saveJob, savedJobs) =>
               Delete This Job Posting
             </button>
           )}
-        </div>
+        </PersonContainer>
       );
     });
 
@@ -63,7 +64,6 @@ const JobDetail = ({
   savedJobs
 }) => (
   <div>
-    <h1>Job Details</h1>
     {renderJob(
       currentUser,
       jobs,

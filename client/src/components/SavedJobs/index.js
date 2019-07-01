@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Job from '../Job';
 import { fetchSavedJobs } from '../../actions/savedJobs';
+import Container from '../../shared/Container';
 
 const propTypes = {
   currentUser: PropTypes.shape({
@@ -40,10 +41,10 @@ const SavedJobs = ({ currentUser, fetchSavedJobs, isLoaded, jobs }) => {
   }, [currentUser.uid, fetchSavedJobs, isLoaded]);
 
   return (
-    <div>
+    <Container>
       <h1>Saved Jobs</h1>
       {renderJobs(jobs)}
-    </div>
+    </Container>
   );
 };
 

@@ -1,9 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
+import FormWrap from '../../shared/FormWrap';
 
 let ProfileForm = ({ handleSubmit, initialValues, pristine, submitting }) => (
-  <div>
+  <FormWrap>
     <form onSubmit={handleSubmit}>
       {initialValues.company && (
         <>
@@ -39,7 +40,7 @@ let ProfileForm = ({ handleSubmit, initialValues, pristine, submitting }) => (
         Submit
       </button>
     </form>
-  </div>
+  </FormWrap>
 );
 
 const mapStateToProps = state => ({

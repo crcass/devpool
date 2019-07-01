@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import PersonContainer from '../../shared/PersonContainer';
 
 const propTypes = {
   image: PropTypes.string.isRequired,
@@ -7,11 +8,11 @@ const propTypes = {
 };
 
 const Profile = ({ image, name }) => (
-  <div>
+  <PersonContainer>
     <h2>Profile</h2>
     <img src={image} alt={name} />
     <h3>{name}</h3>
-  </div>
+  </PersonContainer>
 );
 
 Profile.propTypes = propTypes;

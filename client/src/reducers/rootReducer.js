@@ -4,6 +4,7 @@ import { COMMENT_ADDED, JOB_ADDED } from '../actions';
 import auth from './auth';
 import comments from './comments';
 import jobs from './jobs';
+import menu from './menu';
 import repos from './repos';
 import savedJobs from './savedJobs';
 import students from './students';
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
   auth,
   comments,
   jobs,
+  menu,
   repos,
   savedJobs,
   students,

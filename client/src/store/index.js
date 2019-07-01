@@ -13,6 +13,7 @@ const initialState = {
   },
   comments: { comments: [], commentsLoaded: false },
   jobs: { jobs: [], jobsLoaded: false },
+  menu: { open: false },
   repos: {
     repos: [],
     reposLoaded: false
