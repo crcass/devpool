@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import Main from '../../shared/Main';
 import Hero from '../../shared/Hero';
 import { userLogin } from '../../actions/auth';
-import providers from '../../auth/providers';
+import providers from '../../Auth/providers';
 
 const propTypes = {
   history: PropTypes.object.isRequired,

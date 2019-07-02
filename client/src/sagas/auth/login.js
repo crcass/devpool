@@ -6,7 +6,7 @@ import {
   NEW_USER,
   USER_LOGIN
 } from '../../actions';
-import { firebaseSignOut, signIn } from '../../auth';
+import { firebaseSignOut, signIn } from '../../Auth';
 import { getData } from '../../api';
 import { oneStudent, user } from '../../constants/endpoints';
 import { formatAuthenticatedUser } from '../../helpers';
