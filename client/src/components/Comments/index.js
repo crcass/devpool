@@ -10,6 +10,7 @@ import {
   removeComment
 } from '../../actions/comments';
 import CommentContainer from './layout/CommentContainer';
+import CommentWrap from './layout/CommentsWrap';
 import Container from '../../shared/Container';
 
 const propTypes = {
@@ -71,7 +72,7 @@ const Comments = ({
     <section>
       <Container>
         <h1>Comments</h1>
-        {renderComments(comments, removeComment)}
+        <CommentWrap>{renderComments(comments, removeComment)}</CommentWrap>
         {currentUser.provider === 'google.com' &&
           location.pathname !== '/dashboard/comments/' && (
             <CommentForm currentUser={currentUser} onSubmit={handleSubmit} />

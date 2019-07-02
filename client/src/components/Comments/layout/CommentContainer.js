@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const CommentContainer = styled.div`
+const CommentsWrap = styled.div`
   align-items: center;
   border-bottom: 1px solid #222;
   display: flex;
@@ -9,6 +9,12 @@ const CommentContainer = styled.div`
   p {
     width: 50%;
   }
+
+  button {
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
 `;
 
-export default CommentContainer;
+export default CommentsWrap;
