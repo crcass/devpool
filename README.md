@@ -1,30 +1,6 @@
-# Codename: Mercury
+# Devpool
 
-This project is currently in active development. This readme will be updated as the project continues.
-
-## Progress
-
-- [x] Load student info from database
-- [x] Call student info against GitHub API to fetch repositories
-- [x] Recruiters can view a list of students and view a details page for individual students
-- [x] Recruiters can leave comments with an optional url for individual students
-- [x] Recruiters can delete messages they have left for students
-- [x] Recruiters & Students can only see messages where they are the sender or recipient
-- [x] Authentication: Recruiters login with Google account, Students login with GitHub account
-- [x] Recruiters can post jobs to the database
-- [x] Recruiters can delete their jobs from the database
-- [x] Students can view a list of posted jobs and view a details page for individual jobs
-- [x] Students can save jobs to the database
-- [x] Students can delete their saved jobs from the database
-- [x] Student dashboard - jobs listing, brief student profile, comments, saved jobs
-- [x] Recruiter dashboard - student listing, brief recruiter profile, comments, posted jobs
-- [x] Account page - users on either side of the app can update select information stored in the database
-- [x] Landing page that leads to login
-- [x] Recruiter login checks against database, redirects to form to add new user
-- [x] Student login checks against database, redirects to form to add new student
-- [x] About / Marketing page
-- [x] Header Nav / Footer
-- [x] Styling
+![Devpool](/client/public/devpool.jpg)
 
 ## Technology
 
@@ -37,6 +13,14 @@ A website that provides a place for recruiters to see students enrolled in a cod
 ## Motivation
 
 This project was an exercise to build a larger-scale, full-stack React website. I wanted to use this as an opportunity to become more familiar with libraries and tools that are being used in modern React apps.
+
+## Design Process
+
+I started by focusing on getting the GitHub API working correctly with Redux-Sagas & Axios. Initially, the student data was stored in a JSON object for the sake of simplicity. Once the API calls were working correctly, I moved the student data from a JSON object to a MySQL table.
+
+I added the commenting feature and jobs listing next, and then worked on authentication. From there getting the student's side of the app was fairly simple, as many of the features work in a similiar way. I made sure to include the ability for new user's to be able to add their info to our database when they log in for the first time. This is essential for populating the user's GitHub repositories, comments, and posted/saved jobs.
+
+For styling, I wanted to keep it simple and functional. Everything is coded by hand and no libraries are used. The styling is very basic but functional.
 
 ## Known Issues
 
