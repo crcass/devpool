@@ -2,6 +2,9 @@
   "name": "devpool2",
   "version": "0.1.0",
   "description": "Updated devpool",
+  "engines": {
+    "yarn": "1.16.0"
+  },
   "private": true,
   "proxy": "http://localhost:3001/",
   "dependencies": {
