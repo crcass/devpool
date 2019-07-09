@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -29,7 +29,6 @@ const renderButtons = (history, loggedIn, loggingIn, providers, userLogin) =>
   ));
 
 const Login = ({ history, loggedIn, loggingIn, userLogin }) => {
-  useEffect(() => {});
   return (
     <Main>
       <Hero>

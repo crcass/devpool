@@ -99,7 +99,6 @@ const Dashboard = ({
         jobs={jobs}
         savedJobs={savedJobs}
       />
-      {/* <Profile image={currentUser.image} name={currentUser.name} /> */}
       {currentUser.provider === 'google.com'
         ? renderRoutes(currentUser, recruiterRoutes)
         : renderRoutes(currentUser, studentRoutes)}

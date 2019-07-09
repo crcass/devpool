@@ -27,7 +27,6 @@ const Routes = ({ auth, currentUser, loggedIn }) => (
       <PrivateRoute component={Dashboard} currentUser={currentUser} />
       <Route component={NotFound} />
     </Switch>
-    {/* <Footer auth={auth} currentUser={currentUser} /> */}
   </Router>
 );
 
